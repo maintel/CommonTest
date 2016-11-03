@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "maintel.commontest"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets{
+        main{
+            java.srcDirs = ['src/main/java','src/main/java-gen']
+        }
+    }
+}
+
+greendao{
+    schemaVersion 1 //指定数据库schema版本号，迁移等操作会用到;
+    daoPackage 'maintel.commontest.entity' //dao的包名，包名默认是entity所在的包；
+    targetGenDir 'src/main/java-gen' //生成数据库文件的目录
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'me.iwf.photopicker:PhotoPicker:0.1.8'
+    compile 'cn.finalteam:galleryfinal:1.4.8.7'
+    compile 'com.squareup.retrofit2:converter-scalars:2.0.0' //字符串 转换器
+    compile 'com.squareup.okhttp3:okhttp:3.2.0' //网络
+    compile 'com.squareup.retrofit2:retrofit:2.0.0'  //网络
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'//ConverterFactory的Gson依赖包
+    compile 'org.greenrobot:greendao:3.2.0' //数据库orm框架 greenDao
+    compile 'com.facebook.stetho:stetho:1.0.1' //通过chrome抓包，查看数据库
+    compile 'com.jakewharton:butterknife:7.0.1' //依赖注入框架
+}
