@@ -8,4 +8,5 @@ package maintel.commontest.greendaotest.db;
  */
 public class DBHelper {
 
+
 }
