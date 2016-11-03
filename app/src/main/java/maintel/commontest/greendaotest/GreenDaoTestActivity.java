@@ -1,7 +1,5 @@
 package maintel.commontest.greendaotest;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import java.util.Random;
@@ -10,7 +8,6 @@ import maintel.commontest.R;
 import maintel.commontest.base.BaseActivity;
 import maintel.commontest.base.Content;
 import maintel.commontest.base.MyApplication;
-import maintel.commontest.entity.DaoMaster;
 import maintel.commontest.entity.DaoSession;
 import maintel.commontest.entity.User;
 import maintel.commontest.entity.UserDao;
