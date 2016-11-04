@@ -26,7 +26,7 @@ android {
 }
 
 greendao{
-    schemaVersion 1 //指定数据库schema版本号，迁移等操作会用到;
+    schemaVersion 13 //指定数据库schema版本号，迁移等操作会用到;
     daoPackage 'maintel.commontest.entity' //dao的包名，包名默认是entity所在的包；
     targetGenDir 'src/main/java-gen' //生成数据库文件的目录
 }

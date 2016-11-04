@@ -25,7 +25,7 @@ public class RecycleViewTest extends AppCompatActivity implements View.OnClickLi
     }
 
     RecyclerView recyclerView;
-    RecyclerViewBaseAdapter<String> testAdapter;
+    RecycleViewTestAdapter<String> testAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
