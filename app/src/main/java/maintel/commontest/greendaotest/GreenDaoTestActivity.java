@@ -52,6 +52,7 @@ public class GreenDaoTestActivity extends BaseActivity implements RecyclerViewBa
         queryAll();
     }
 
+
     public void add(View v) {
         User user = new User();
         user.setName(new Random().nextInt() + "cjy");
