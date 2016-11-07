@@ -39,6 +39,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".recycleviewtest.RecycleViewTest"/>
         <activity android:name=".greendaotest.GreenDaoTestActivity"/>
+        <activity android:name=".webview.FineReportTestActivity"/>
     </application>
 
 </manifest>

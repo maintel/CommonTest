@@ -31,5 +31,6 @@ public class GreenDaoTestAdapter extends RecyclerViewBaseAdapter<User> {
         User user = list.get(poi);
         holder.setTextView(R.id.tv_user_Name, user.getName());
         holder.setTextView(R.id.tv_user_id, user.getId() + "");
+        holder.setTextView(R.id.tv_user_age, user.getAge());
     }
 }

@@ -2,6 +2,7 @@ package maintel.commontest.greendaotest;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import butterknife.Bind;
+import maintel.commontest.BuildConfig;
 import maintel.commontest.R;
 import maintel.commontest.base.BaseActivity;
 import maintel.commontest.base.Content;
@@ -32,6 +34,7 @@ import maintel.commontest.recycleviewtest.RecyclerViewBaseAdapter;
 public class GreenDaoTestActivity extends BaseActivity implements RecyclerViewBaseAdapter.OnItemClickListener, RecyclerViewBaseAdapter.OnItemLongClickListener {
 
     UserDao userDao;
+    DaoSession daoSession;
     @Bind(R.id.recy_test)
     RecyclerView recy_test;
 
@@ -39,7 +42,7 @@ public class GreenDaoTestActivity extends BaseActivity implements RecyclerViewBa
 
     @Override
     protected void initData() {
-        DaoSession daoSession = MyApplication.getInterface().getDaoSession();
+        daoSession = MyApplication.getInterface().getDaoSession();
         userDao = daoSession.getUserDao();
         adapter = new GreenDaoTestAdapter(new ArrayList<User>(), mContext);
         recy_test.setLayoutManager(new LinearLayoutManager(mContext));
@@ -52,30 +55,38 @@ public class GreenDaoTestActivity extends BaseActivity implements RecyclerViewBa
     public void add(View v) {
         User user = new User();
         user.setName(new Random().nextInt() + "cjy");
+        int i = (int)(10+Math.random()*(30-10+1));
+        user.setAge(i + "");
         userDao.insert(user);
         queryAll();
     }
 
     public void delAll(View v) {
         userDao.deleteAll();
-//        queryAll();
+        queryAll();
     }
 
     public void queryAll() {
+        daoSession.clear();
         QueryBuilder<User> queryBuilder = userDao.queryBuilder();
+        for (User user :
+                queryBuilder.list()) {
+            if (BuildConfig.DEBUG) Log.e("GreenDaoTestActivity", user.getName().toString());
+        }
         adapter.upDate(queryBuilder.list());
-
     }
 
     public boolean update(@NotNull User user) {
         if (user == null) {
             return false;
         }
-        User users = userDao.queryBuilder().where(UserDao.Properties.Id.eq(user.getId())).build().unique();
+        daoSession.clear();
+        long id = user.getId();
+        User users = userDao.queryBuilder().where(UserDao.Properties.Id.eq(id)).build().unique();
         if (users == null) {
             return false;
         } else {
-            userDao.update(users);
+            userDao.update(user);
         }
         return true;
     }
@@ -84,6 +95,7 @@ public class GreenDaoTestActivity extends BaseActivity implements RecyclerViewBa
         if (user == null) {
             return false;
         }
+        daoSession.clear();
         User users = userDao.queryBuilder().where(UserDao.Properties.Id.eq(user.getId())).build().unique();
         if (users == null) {
             return false;
@@ -98,7 +110,7 @@ public class GreenDaoTestActivity extends BaseActivity implements RecyclerViewBa
     public void onItemClick(View view, int poi) {
         User user = (User) adapter.getItemByPosition(poi);
         user.setName("修改" + new Random().nextInt());
-        if ( update(user)) {
+        if (update(user)) {
             Toast.makeText(mContext, "修改成功", Toast.LENGTH_SHORT).show();
             queryAll();
         } else {
@@ -109,6 +121,7 @@ public class GreenDaoTestActivity extends BaseActivity implements RecyclerViewBa
     @Override
     public void onItemLongClick(View view, int poi) {
         User user = (User) adapter.getItemByPosition(poi);
+        user.setName("修改" + new Random().nextInt());
         if (del(user)) {
             Toast.makeText(mContext, "删除成功", Toast.LENGTH_SHORT).show();
             queryAll();

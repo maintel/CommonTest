@@ -12,13 +12,13 @@ import maintel.commontest.entity.UserDao;
  * 时间：2016/11/4 13:47
  * 备注：
  */
-public class UpdateOpenHelper extends DaoMaster.OpenHelper {
+public class MyUpOpenHelper extends DaoMaster.OpenHelper {
 
-    public UpdateOpenHelper(Context context, String name) {
+    public MyUpOpenHelper(Context context, String name) {
         super(context, name);
     }
 
-    public UpdateOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory) {
+    public MyUpOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory) {
         super(context, name, factory);
     }
 

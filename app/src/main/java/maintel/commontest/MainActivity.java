@@ -29,6 +29,7 @@ import maintel.commontest.greendaotest.GreenDaoTestActivity;
 import maintel.commontest.net.NetworkCallBack;
 import maintel.commontest.net.NetworkUtils;
 import maintel.commontest.recycleviewtest.RecycleViewTest;
+import maintel.commontest.webview.FineReportTestActivity;
 import me.iwf.photopicker.utils.PhotoPickerIntent;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -112,6 +113,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_green_dao:
                 myIntent.setClass(this, GreenDaoTestActivity.class);
+                startActivity(myIntent);
+                break;
+            case R.id.btn_fine_report:
+                myIntent.setClass(this, FineReportTestActivity.class);
                 startActivity(myIntent);
                 break;
         }

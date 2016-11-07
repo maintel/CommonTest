@@ -8,7 +8,7 @@ import org.greenrobot.greendao.database.Database;
 
 import maintel.commontest.entity.DaoMaster;
 import maintel.commontest.entity.DaoSession;
-import maintel.commontest.greendaotest.db.UpdateOpenHelper;
+import maintel.commontest.greendaotest.db.MyUpOpenHelper;
 
 /**
  * 说明：Application
@@ -37,7 +37,7 @@ public class MyApplication extends Application {
                         .enableWebKitInspector(
                                 Stetho.defaultInspectorModulesProvider(this))
                         .build());
-        UpdateOpenHelper helper = new UpdateOpenHelper(this, ENCRYPTED ? "notes-db-encrypted" : "notes-db");
+        MyUpOpenHelper helper = new MyUpOpenHelper(this, ENCRYPTED ? "notes-db-encrypted" : "notes-db");
         Database db = ENCRYPTED ? helper.getEncryptedWritableDb("super-secret") : helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
     }
@@ -45,4 +45,5 @@ public class MyApplication extends Application {
     public DaoSession getDaoSession() {
         return daoSession;
     }
+
 }
