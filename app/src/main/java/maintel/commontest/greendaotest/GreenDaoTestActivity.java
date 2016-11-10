@@ -22,6 +22,7 @@ import maintel.commontest.entity.DaoSession;
 import maintel.commontest.entity.User;
 import maintel.commontest.entity.UserDao;
 import maintel.commontest.greendaotest.adapter.GreenDaoTestAdapter;
+import maintel.commontest.greendaotest.db.DaoUtils;
 import maintel.commontest.recycleviewtest.RecyclerViewBaseAdapter;
 
 /**
@@ -42,8 +43,8 @@ public class GreenDaoTestActivity extends BaseActivity implements RecyclerViewBa
 
     @Override
     protected void initData() {
-        daoSession = MyApplication.getInterface().getDaoSession();
-        userDao = daoSession.getUserDao();
+//        daoSession = MyApplication.getInterface().getDaoSession();
+//        userDao = daoSession.getUserDao();
         adapter = new GreenDaoTestAdapter(new ArrayList<User>(), mContext);
         recy_test.setLayoutManager(new LinearLayoutManager(mContext));
         recy_test.setAdapter(adapter);
@@ -56,9 +57,10 @@ public class GreenDaoTestActivity extends BaseActivity implements RecyclerViewBa
     public void add(View v) {
         User user = new User();
         user.setName(new Random().nextInt() + "cjy");
-        int i = (int)(10+Math.random()*(30-10+1));
+        int i = (int) (10 + Math.random() * (30 - 10 + 1));
         user.setAge(i + "");
-        userDao.insert(user);
+//        userDao.insert(user);
+        DaoUtils.getUserDao().insert(user);
         queryAll();
     }
 
@@ -68,13 +70,10 @@ public class GreenDaoTestActivity extends BaseActivity implements RecyclerViewBa
     }
 
     public void queryAll() {
-        daoSession.clear();
-        QueryBuilder<User> queryBuilder = userDao.queryBuilder();
-        for (User user :
-                queryBuilder.list()) {
-            if (BuildConfig.DEBUG) Log.e("GreenDaoTestActivity", user.getName().toString());
-        }
-        adapter.upDate(queryBuilder.list());
+//        daoSession.clear();
+//        QueryBuilder<User> queryBuilder = userDao.queryBuilder();
+
+        adapter.upDate(DaoUtils.getUserDao().loadAll());
     }
 
     public boolean update(@NotNull User user) {
