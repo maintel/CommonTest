@@ -21,6 +21,16 @@ public class LockBean {
     public String lockserialId;
     public String lockName;
 
+    public LockBean(int connectState, int batteryQuantity, String lockserialId, String lockName) {
+        this.connectState = connectState;
+        this.batteryQuantity = batteryQuantity;
+        this.lockserialId = lockserialId;
+        this.lockName = lockName;
+    }
+
+    public LockBean() {
+    }
+
     @Override
     public String toString() {
         return "LockBean{" +

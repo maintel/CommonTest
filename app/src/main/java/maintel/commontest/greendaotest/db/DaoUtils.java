@@ -16,6 +16,7 @@ public class DaoUtils {
         if (null == userDao) {
             userDao = new UserDaoManager();
         }
+        userDao.clearDaoSession();
         return userDao;
     }
 }

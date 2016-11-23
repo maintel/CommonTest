@@ -34,7 +34,7 @@ public class NetworkUtils {
                     .connectTimeout(15, TimeUnit.SECONDS).build();
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
-                    .baseUrl("http://192.168.1.138:8080/yannanlock/")
+                    .baseUrl("http://192.168.1.202:8888/")
                     .addConverterFactory(new MyConverterFactory())
 //                    .addConverterFactory(GsonConverterFactory.create())
                     .build();

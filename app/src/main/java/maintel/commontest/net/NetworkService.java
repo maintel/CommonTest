@@ -5,11 +5,14 @@ import java.util.Map;
 
 import maintel.commontest.bean.CommonBean;
 import maintel.commontest.bean.LockBean;
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
@@ -59,4 +62,13 @@ public interface NetworkService {
     @POST("getLocklist1.json")
     @FormUrlEncoded
     Call<List<LockBean>> getLocklist(@Field("lockserialId") String lockserialId, @Field("userId") String userId, @Field("lockName") String lockName);
+
+    @Headers({"Content-Type: application/json", "Accept: application/json"})//需要添加头
+    @POST("test")
+    Call<String> test(@Body RequestBody request);
+
+
+    @POST("test")
+    @FormUrlEncoded
+    Call<String> test2(@Field("test") String str);
 }

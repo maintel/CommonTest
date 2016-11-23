@@ -59,7 +59,6 @@ public class GreenDaoTestActivity extends BaseActivity implements RecyclerViewBa
         user.setName(new Random().nextInt() + "cjy");
         int i = (int) (10 + Math.random() * (30 - 10 + 1));
         user.setAge(i + "");
-//        userDao.insert(user);
         DaoUtils.getUserDao().insert(user);
         queryAll();
     }
