@@ -6,10 +6,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import butterknife.Bind;
@@ -94,13 +97,16 @@ public class GreenDaoTestActivity extends BaseActivity implements RecyclerViewBa
         if (user == null) {
             return false;
         }
-        daoSession.clear();
-        User users = userDao.queryBuilder().where(UserDao.Properties.Id.eq(user.getId())).build().unique();
-        if (users == null) {
-            return false;
-        } else {
-            userDao.delete(users);
-        }
+//        daoSession.clear();
+//        User users = userDao.queryBuilder().where(UserDao.Properties.Id.eq(user.getId())).build().unique();
+//        if (users == null) {
+//            return false;
+//        } else {
+//            userDao.delete(users);
+//        }
+        Map<Property, String> map = new HashMap<>();
+        map.put(UserDao.Properties.Name, user.getName());
+        DaoUtils.getUserDao().deleteMap(map);
         return true;
     }
 
@@ -120,7 +126,7 @@ public class GreenDaoTestActivity extends BaseActivity implements RecyclerViewBa
     @Override
     public void onItemLongClick(View view, int poi) {
         User user = (User) adapter.getItemByPosition(poi);
-        user.setName("修改" + new Random().nextInt());
+//        user.setName("修改" + new Random().nextInt());
         if (del(user)) {
             Toast.makeText(mContext, "删除成功", Toast.LENGTH_SHORT).show();
             queryAll();

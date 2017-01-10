@@ -11,4 +11,9 @@
     </style>
 
 
+    <style name="my_pop_style">
+        <item name="android:windowEnterAnimation">@anim/pop_in_tran_bottom</item>
+        <item name="android:windowExitAnimation">@anim/pop_out_tran_bottom</item>
+    </style>
+
 </resources>

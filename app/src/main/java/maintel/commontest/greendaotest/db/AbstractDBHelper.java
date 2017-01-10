@@ -7,11 +7,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import org.greenrobot.greendao.AbstractDao;
+import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.query.Query;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import cn.finalteam.toolsfinal.StringUtils;
 import maintel.commontest.entity.DaoMaster;
@@ -112,6 +115,26 @@ public abstract class AbstractDBHelper<M, K> implements IDatabase<M, K> {
             if (m == null)
                 return false;
             getAbstractDao().delete(m);
+        } catch (SQLiteException e) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean deleteMap(Map<Property, String> map) {
+        try {
+            QueryBuilder q = getQueryBuilder();
+            Map.Entry entry;
+            Object fieldValue;
+            Property pro;
+            for (Iterator i$ = map.entrySet().iterator(); i$.hasNext(); q.where(pro.eq(fieldValue))) {
+                entry = (Map.Entry) i$.next();
+                pro = (Property) entry.getKey();
+                fieldValue = entry.getValue();
+            }
+            q.buildDelete();
+
         } catch (SQLiteException e) {
             return false;
         }

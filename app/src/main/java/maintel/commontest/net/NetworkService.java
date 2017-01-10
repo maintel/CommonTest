@@ -6,6 +6,7 @@ import java.util.Map;
 import maintel.commontest.bean.CommonBean;
 import maintel.commontest.bean.LockBean;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -71,4 +72,7 @@ public interface NetworkService {
     @POST("test")
     @FormUrlEncoded
     Call<String> test2(@Field("test") String str);
+//192.168.1.59:8080/yannanlock.zip
+    @GET("yannanlock.zip")
+    Call<ResponseBody> downLoad();
 }

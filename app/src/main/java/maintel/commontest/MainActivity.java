@@ -1,34 +1,35 @@
 package maintel.commontest;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ClipDrawable;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.EditText;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.List;
 
-import maintel.commontest.bean.CommonBean;
+import maintel.commontest.ZipExtractor.ZipExtractorActivity;
 import maintel.commontest.bean.LockBean;
+import maintel.commontest.customView.CustomViewActivity;
+import maintel.commontest.customView.MyTitleView;
 import maintel.commontest.greendaotest.GreenDaoTestActivity;
 import maintel.commontest.net.NetworkCallBack;
 import maintel.commontest.net.NetworkUtils;
@@ -36,18 +37,21 @@ import maintel.commontest.recycleviewtest.RecycleViewTest;
 import maintel.commontest.utils.GsonTest;
 import maintel.commontest.webview.FineReportTestActivity;
 import me.iwf.photopicker.utils.PhotoPickerIntent;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    MyTitleView ll_title;
+    //    ImageView iv_title;
+    RelativeLayout.LayoutParams linearParams;
+    ClipDrawable clipDrawable;
+    TextView tv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -65,7 +69,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         setContentView(R.layout.activity_main);
 //        openImage();
-
+        ll_title = (MyTitleView) findViewById(R.id.ll_title);
+//        iv_title = (ImageView) findViewById(R.id.iv_title);
+        tv_title = (TextView) findViewById(R.id.tv_title);
+//        clipDrawable = (ClipDrawable) iv_title.getDrawable();
+//        clipDrawable.setLevel(3133);
+        linearParams = (RelativeLayout.LayoutParams) ll_title.getLayoutParams();
     }
 
 
@@ -171,7 +180,153 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_gson_test:
                 GsonTest.gsonListTest();
                 break;
+            case R.id.btn_go_test:
+                myIntent.setClass(this, TestActivity.class);
+                startActivity(myIntent);
+                break;
+            case R.id.tv_title:
+//                showLockList();
+                if (isShow) {
+                    isShow = false;
+//                    iv_title.setVisibility(View.GONE);
+//                    mHandler.sendEmptyMessageDelayed(1002, 5);
+                    ll_title.closeList();
+                } else {
+                    isShow = true;
+                    ll_title.openList();
+//                    mHandler.sendEmptyMessageDelayed(1001, 5);
+//                    iv_title.setVisibility(View.VISIBLE);
+////                    openFromCurrentPosition();
+                }
+
+                break;
+            case R.id.btn_go_custom:
+                myIntent.setClass(this, CustomViewActivity.class);
+                startActivity(myIntent);
+                break;
+            case R.id.btn_go_zip:
+                myIntent.setClass(this, ZipExtractorActivity.class);
+                startActivity(myIntent);
+                break;
         }
     }
-}
 
+    private ValueAnimator animator;
+
+//    private void openFromCurrentPosition() {
+//        if (animator != null) {
+//            animator.cancel();
+//        }
+//        animator = ValueAnimator.ofFloat(0, iv_title.getHeight());
+////        animator.addUpdateListener(updateListener);
+////        animator.addListener(new SimpleAnimatorListener() {
+////            @Override
+////            public void onAnimationEnd(Animator animation) {
+////                if (observer != null) {
+////                    observer.onOpen();
+////                }
+////            }
+////        });
+//        animator.setDuration(2000);
+//        animator.setInterpolator(new DecelerateInterpolator());
+//        animator.start();
+//    }
+//
+//    private ValueAnimator.AnimatorUpdateListener updateListener = new ValueAnimator.AnimatorUpdateListener() {
+//
+//        @Override
+//        public void onAnimationUpdate(ValueAnimator animator) {
+//            float v = (Float) animator.getAnimatedValue();
+//            mClearRect.set(mProgress = v, 0, mWidth, getMeasuredHeight());
+//            dstReel.left = mProgress - mReelWidth / 2;
+//            dstReel.right = mProgress + mReelWidth / 2;
+//            if (observer != null) {
+//                observer.onScroll(mProgress);
+//            }
+//            invalidate();
+//        }
+//    };
+
+    boolean isShow = false;
+    int i = 0;
+
+    private void showList() {
+
+        for (int i = 0; i <= 50; i++) {
+            this.i = i;
+
+        }
+    }
+
+
+    Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+
+            switch (msg.what) {
+                case 1001:
+                    if (i <= 80) {
+                        linearParams.width = LinearLayout.LayoutParams.MATCH_PARENT;
+                        int height = 146 + i * 4;
+                        linearParams.height = height;// 控件的宽强制设成30
+                        ll_title.setLayoutParams(linearParams);
+                        int level = (int) (((float) height / 466) * 10000);
+                        clipDrawable.setLevel(level);
+                        if (BuildConfig.DEBUG)
+                            Log.e("MainActivity", "ll_title.getHeight():" + ll_title.getHeight() + "        " + i);
+                        if (i < 80) {
+                            i++;
+                            mHandler.sendEmptyMessage(1001);
+                        }
+                    }
+                    break;
+                case 1002:
+                    if (BuildConfig.DEBUG)
+                        Log.e("MainActivity", "ll_title.getHeight():" + ll_title.getHeight() + "       " + i);
+                    if (i >= 0) {
+                        linearParams.width = LinearLayout.LayoutParams.MATCH_PARENT;
+                        int height = 466 - ((80 - i) * 4);
+                        linearParams.height = height;// 控件的宽强制设成30
+                        ll_title.setLayoutParams(linearParams);
+                        int level = (int) (((float) height / 466) * 10000);
+                        clipDrawable.setLevel(level);
+                        if (i > 0) {
+                            i--;
+                            mHandler.sendEmptyMessage(1002);
+                        }
+                    }
+                    break;
+            }
+        }
+    };
+
+    private void closeList() {
+        isShow = false;
+        for (int i = 0; i <= 50; i++) {
+            this.i = i;
+            mHandler.sendEmptyMessageDelayed(1002, 20);
+        }
+    }
+
+    PopupWindow mPopuWindow;
+
+    /**
+     * 弹出所有锁的列表
+     */
+    private void showLockList() {
+        View view;
+        ListView lockNameListView;
+        if (null == mPopuWindow) {
+            LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = layoutInflater.inflate(R.layout.popu_lock_list, null);
+            lockNameListView = (ListView) view.findViewById(R.id.lv_lock_name);
+            mPopuWindow = new PopupWindow(view, getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight() / 4);
+            mPopuWindow.setOutsideTouchable(true);
+            mPopuWindow.setAnimationStyle(R.style.my_pop_style);
+        }
+        mPopuWindow.setFocusable(true);
+        mPopuWindow.setOutsideTouchable(true);
+        mPopuWindow.setBackgroundDrawable(new BitmapDrawable());
+        mPopuWindow.showAsDropDown(ll_title, 0, 0);
+    }
+}

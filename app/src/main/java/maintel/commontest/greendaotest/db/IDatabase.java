@@ -2,9 +2,11 @@ package maintel.commontest.greendaotest.db;
 
 import android.support.annotation.NonNull;
 
+import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 说明：Database接口
@@ -25,6 +27,8 @@ public interface IDatabase<M, K> {
     boolean deleteByKeyInTx(K... key);
 
     boolean deleteAll();
+
+    boolean deleteMap(Map<Property, String> map);
 
     boolean insertOrReplace(@NonNull M m);
 
