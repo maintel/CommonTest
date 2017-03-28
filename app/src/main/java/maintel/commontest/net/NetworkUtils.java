@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * <p>name:</p>
@@ -31,12 +33,14 @@ public class NetworkUtils {
 //                    .sslSocketFactory(getSSLSocketFactory(MyApplication.getInterface().getApplicationContext(), certificates))
 //                    .sslSocketFactory(getSSLSocketFactory())
 //                    .hostnameVerifier(get)
+                    .addNetworkInterceptor(new MyInterceptor())
                     .connectTimeout(15, TimeUnit.SECONDS).build();
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
-                    .baseUrl("http://192.168.1.202:8888/")
-                    .addConverterFactory(new MyConverterFactory())
-//                    .addConverterFactory(GsonConverterFactory.create())
+                    .baseUrl("http://192.168.1.205:8080/")
+//                    .addConverterFactory(new MyConverterFactory())
+                    .addConverterFactory(GsonConverterFactory.create())
+//                    .addConverterFactory(ScalarsConverterFactory.create())
                     .build();
             networkService = retrofit.create(NetworkService.class);
         }

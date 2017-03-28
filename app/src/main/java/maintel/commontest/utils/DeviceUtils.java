@@ -20,6 +20,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.os.Vibrator;
@@ -30,6 +31,7 @@ import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -50,6 +52,8 @@ import java.util.Map;
 
 import cn.finalteam.toolsfinal.StringUtils;
 import maintel.commontest.base.MyApplication;
+
+import static android.support.v7.widget.StaggeredGridLayoutManager.TAG;
 
 
 /**
@@ -758,7 +762,6 @@ public class DeviceUtils {
     /**
      * dp转px
      *
-     * @param context
      * @param dpVal
      * @return
      */
@@ -819,10 +822,43 @@ public class DeviceUtils {
 
     /**
      * 6.0版本 注册蓝牙权限
+     *
      * @param activity
      */
     public static void requestPermission(Activity activity) {
         ActivityCompat.requestPermissions(activity,
                 new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 11);
+    }
+
+    /**
+     * 判断当前的activity是否为top activity @author dujinyang
+     *
+     * @param className
+     * @return
+     */
+    public static void isTopActivity(ActivityManager am, Context ctx, String className) {
+        if (Build.VERSION.SDK_INT > 21) {
+// 5.0及其以后的版本
+            List<ActivityManager.AppTask> tasks = am.getAppTasks();
+            if (null != tasks && tasks.size() > 0) {
+                for (ActivityManager.AppTask task : tasks) {
+                    String packageName = task.getTaskInfo().baseIntent.getComponent().getPackageName();
+                    try {
+                        String lable = ctx.getPackageManager().getApplicationLabel(ctx.getPackageManager().getApplicationInfo(packageName,
+                                PackageManager.GET_META_DATA)).toString(); //Log.i(TAG,packageName + lable);
+                        Log.e("_____________",lable);
+                    } catch (PackageManager.NameNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } else {
+            // 5.0之前 // 获取正在运行的任务栈(一个应用程序占用一个任务栈) 最近使用的任务栈会在最前面
+            // 1表示给集合设置的最大容量
+            List<ActivityManager.RunningTaskInfo> infos = am.getRunningTasks(1);
+            // 获取最近运行的任务栈中的栈顶Activity(即用户当前操作的activity)的包名
+            String packageName = am.getRunningTasks(1).get(0).topActivity.getClassName();
+            Log.e("_____________",packageName);
+        }
     }
 }

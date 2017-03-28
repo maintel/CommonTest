@@ -30,7 +30,7 @@ public class GsonTest {
     public static String gsonListTest() {
         Gson gson = new Gson();
         List<LockBean> list = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             list.add(new LockBean(i, i, "lockserialId" + i, "lockName" + i));
         }
         StringBuffer stringBuffer = new StringBuffer();

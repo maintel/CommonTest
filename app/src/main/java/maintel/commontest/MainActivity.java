@@ -1,6 +1,7 @@
 package maintel.commontest;
 
 import android.animation.ValueAnimator;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -24,16 +25,22 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.List;
 
 import maintel.commontest.ZipExtractor.ZipExtractorActivity;
+import maintel.commontest.bean.BaseObjBean;
+import maintel.commontest.bean.BaseSequenceBean;
 import maintel.commontest.bean.LockBean;
+import maintel.commontest.bean.User;
 import maintel.commontest.customView.CustomViewActivity;
 import maintel.commontest.customView.MyTitleView;
 import maintel.commontest.greendaotest.GreenDaoTestActivity;
+import maintel.commontest.net.MyCallBack;
 import maintel.commontest.net.NetworkCallBack;
 import maintel.commontest.net.NetworkUtils;
 import maintel.commontest.recycleviewtest.RecycleViewTest;
+import maintel.commontest.utils.DeviceUtils;
 import maintel.commontest.utils.GsonTest;
 import maintel.commontest.webview.FineReportTestActivity;
 import me.iwf.photopicker.utils.PhotoPickerIntent;
@@ -114,36 +121,108 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                            }
 //                        });
 
-                NetworkUtils.getNetworkService()
-                        .test2(GsonTest.gsonListTest())
-                        .enqueue(new Callback<String>() {
-                            @Override
-                            public void onResponse(Call<String> call, Response<String> response) {
+//                NetworkUtils.getNetworkService()
+//                        .test2(GsonTest.gsonListTest())
+//                        .enqueue(new Callback<String>() {
+//                            @Override
+//                            public void onResponse(Call<String> call, Response<String> response) {
+//                                if (BuildConfig.DEBUG)
+//                                    Log.d("MainActivity", response.body().toString());
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<String> call, Throwable t) {
+//
+//                            }
+//                        });
 
-                            }
+                Call<BaseSequenceBean<User>> call = NetworkUtils.getNetworkService().getUserList();
+                try {
+                    List<User> list = call.execute().body().getData(); //不能在主线程中执行啊
+                    for (User user :
+                            list) {
+                        if (BuildConfig.DEBUG) Log.d("MainActivity", user.toString());
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+//                        .enqueue(new Callback<BaseSequenceBean<User>>() {
+//                    @Override
+//                    public void onResponse(Call<BaseSequenceBean<User>> call, Response<BaseSequenceBean<User>> response) {
+//                        if (BuildConfig.DEBUG)
+//                            Log.d("MainActivity", "resBody.getData().size():" + response.body().getData().size());
+//                        List<User> list= response.body().getData();
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<BaseSequenceBean<User>> call, Throwable t) {
+//
+//                        if (BuildConfig.DEBUG) Log.d("MainActivity", t.getMessage().toString());
+//                    }
+//
+//                });
 
-                            @Override
-                            public void onFailure(Call<String> call, Throwable t) {
-
-                            }
-                        });
                 break;
             case R.id.btn_open_album_2: //联网测试2
-                NetworkUtils.getNetworkService().getLocklist("1", "1", "cjy").enqueue(new Callback<List<LockBean>>() {
+//                NetworkUtils.getNetworkService().getLocklist("1", "1", "cjy").enqueue(new Callback<List<LockBean>>() {
+//                    @Override
+//                    public void onResponse(Call<List<LockBean>> call, Response<List<LockBean>> response) {
+//                        List<LockBean> list = response.body();
+//                        for (LockBean item :
+//                                list) {
+//                            if (BuildConfig.DEBUG) Log.e("MainActivity", item.toString());
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<List<LockBean>> call, Throwable t) {
+//                        if (BuildConfig.DEBUG) Log.e("MainActivity", t.getMessage());
+//                    }
+//                });
+//                NetworkUtils.getNetworkService().getLocklist("cyj").enqueue(new Callback<String>() {
+//                    @Override
+//                    public void onResponse(Call<String> call, Response<String> response) {
+//                        if (BuildConfig.DEBUG) Log.d("MainActivity", response.body().toString());
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<String> call, Throwable t) {
+//
+//                    }
+//                });
+
+//                NetworkUtils.getNetworkService().getUserById("dada").enqueue(new Callback<BaseObjBean<User>>() {
+//                    @Override
+//                    public void onResponse(Call<BaseObjBean<User>> call, Response<BaseObjBean<User>> response) {
+//                        if (BuildConfig.DEBUG) Log.d("MainActivity", response.body().getMessage());
+//                        if (BuildConfig.DEBUG)
+//                            Log.d("MainActivity", response.body().getData().toString());
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<BaseObjBean<User>> call, Throwable t) {
+//
+//                    }
+//                });
+
+                NetworkUtils.getNetworkService().getUserById("adad").enqueue(new MyCallBack<BaseObjBean<User>>() {
                     @Override
-                    public void onResponse(Call<List<LockBean>> call, Response<List<LockBean>> response) {
-                        List<LockBean> list = response.body();
-                        for (LockBean item :
-                                list) {
-                            if (BuildConfig.DEBUG) Log.e("MainActivity", item.toString());
-                        }
+                    public void onFailure(String msg) {
+                        if (BuildConfig.DEBUG) Log.d("MainActivity", msg);
                     }
 
                     @Override
-                    public void onFailure(Call<List<LockBean>> call, Throwable t) {
-                        if (BuildConfig.DEBUG) Log.e("MainActivity", t.getMessage());
+                    public void onError(String retCode, String message) {
+                        if (BuildConfig.DEBUG) Log.d("MainActivity", retCode + "  " + message);
+                    }
+
+                    @Override
+                    public void onSuccess(BaseObjBean<User> res) {
+                        if (BuildConfig.DEBUG) Log.d("MainActivity", res.getRetCode());
                     }
                 });
+
                 break;
             case R.id.btn_open_album_3: //联网测试2
                 NetworkUtils.getNetworkService()
@@ -207,6 +286,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_go_zip:
                 myIntent.setClass(this, ZipExtractorActivity.class);
                 startActivity(myIntent);
+                break;
+            case R.id.btn_get_top_activity:
+                ActivityManager mActivityManager;
+                mActivityManager = (ActivityManager) this.getSystemService(
+                        Context.ACTIVITY_SERVICE);
+                DeviceUtils.isTopActivity(mActivityManager, this, "MainActivity");
                 break;
         }
     }

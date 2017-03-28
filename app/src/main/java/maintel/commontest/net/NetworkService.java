@@ -3,8 +3,11 @@ package maintel.commontest.net;
 import java.util.List;
 import java.util.Map;
 
+import maintel.commontest.bean.BaseObjBean;
+import maintel.commontest.bean.BaseSequenceBean;
 import maintel.commontest.bean.CommonBean;
 import maintel.commontest.bean.LockBean;
+import maintel.commontest.bean.User;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -15,6 +18,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
@@ -60,19 +64,33 @@ public interface NetworkService {
     @FormUrlEncoded
     Call<CommonBean> updateLockName(@Field("lockserialId") String lockserialId, @Field("userId") String userId, @Field("lockName") String lockName);
 
-    @POST("getLocklist1.json")
+    @POST("/user")
     @FormUrlEncoded
     Call<List<LockBean>> getLocklist(@Field("lockserialId") String lockserialId, @Field("userId") String userId, @Field("lockName") String lockName);
+
+    @GET("/user")
+    Call<String> getLocklist(@Query("userId") String userId);
 
     @Headers({"Content-Type: application/json", "Accept: application/json"})//需要添加头
     @POST("test")
     Call<String> test(@Body RequestBody request);
 
 
-    @POST("test")
+    @POST("/user")
     @FormUrlEncoded
     Call<String> test2(@Field("test") String str);
-//192.168.1.59:8080/yannanlock.zip
-    @GET("yannanlock.zip")
-    Call<ResponseBody> downLoad();
+
+    //192.168.1.59:8080/yannanlock.zip
+    @GET
+    Call<ResponseBody> downLoad(@Url String url);
+
+
+    @POST("/user")
+    Call<BaseSequenceBean<User>> getUserList();
+
+
+    @GET("/user")
+    Call<BaseObjBean<User>> getUserById(@Query("userId") String userId);
+
+
 }

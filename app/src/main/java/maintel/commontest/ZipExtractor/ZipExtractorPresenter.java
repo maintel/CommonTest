@@ -76,6 +76,7 @@ public class ZipExtractorPresenter implements ZipExtractorContract.Presenter {
 
     public ZipExtractorPresenter(ZipExtractorContract.View zipExtractorView, Context context) {
         this.zipExtractorView = zipExtractorView;
+
         this.context = context;
         zipExtractorView.setPresenter(this);
     }
@@ -100,7 +101,7 @@ public class ZipExtractorPresenter implements ZipExtractorContract.Presenter {
                     Log.e("ZipExtractorPresenter", "contentLength:" + contentLength);
                 if (BuildConfig.DEBUG) Log.e("ZipExtractorPresenter", "bytesRead:" + bytesRead);
             }
-        }).downLoad().enqueue(new Callback<ResponseBody>() {
+        }).downLoad("yannanlock.zip").enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (BuildConfig.DEBUG) Log.e("ZipExtractorPresenter", "onResponse");
