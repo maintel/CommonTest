@@ -103,6 +103,20 @@
                 android:layout_height="wrap_content"
                 android:onClick="onClick"
                 android:text="getTopActivityTest" />
+
+            <Button
+                android:id="@+id/btn_thread_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="ThreadTest" />
+            <Button
+                android:id="@+id/btn_rx_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="RxAndroidTest" />
+
         </LinearLayout>
 
 

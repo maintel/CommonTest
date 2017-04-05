@@ -41,7 +41,9 @@
         <activity android:name=".webview.FineReportTestActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".customView.CustomViewActivity" />
-        <activity android:name=".ZipExtractor.ZipExtractorActivity"/>
+        <activity android:name=".ZipExtractor.ZipExtractorActivity" />
+        <activity android:name=".thread.ThreadTestActivity" />
+        <activity android:name=".rxandroid.RxAndroidActivity" />
     </application>
 
 </manifest>

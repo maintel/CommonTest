@@ -40,6 +40,8 @@ import maintel.commontest.net.MyCallBack;
 import maintel.commontest.net.NetworkCallBack;
 import maintel.commontest.net.NetworkUtils;
 import maintel.commontest.recycleviewtest.RecycleViewTest;
+import maintel.commontest.rxandroid.RxAndroidActivity;
+import maintel.commontest.thread.ThreadTestActivity;
 import maintel.commontest.utils.DeviceUtils;
 import maintel.commontest.utils.GsonTest;
 import maintel.commontest.webview.FineReportTestActivity;
@@ -292,6 +294,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mActivityManager = (ActivityManager) this.getSystemService(
                         Context.ACTIVITY_SERVICE);
                 DeviceUtils.isTopActivity(mActivityManager, this, "MainActivity");
+                break;
+            case R.id.btn_thread_test:
+                myIntent.setClass(this, ThreadTestActivity.class);
+                startActivity(myIntent);
+                break;
+            case R.id.btn_rx_test:
+                myIntent.setClass(this, RxAndroidActivity.class);
+                startActivity(myIntent);
                 break;
         }
     }

@@ -44,4 +44,8 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.0' //数据库orm框架 greenDao
     compile 'com.facebook.stetho:stetho:1.0.1' //通过chrome抓包，查看数据库
     compile 'com.jakewharton:butterknife:7.0.1' //依赖注入框架
+    compile group: 'org.mockito', name: 'mockito-all', version: '1.10.19' //单元测试
+
+    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 }
