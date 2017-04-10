@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
 
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <Button
-        android:id="@+id/btn_get_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="get_user" />
 
     <Button
-        android:id="@+id/btn_rx_just"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="rx_just" />
-
-    <include layout="@layout/merge_rx" />
-
-
-</LinearLayout>
+</merge>

@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * 说明：
  * 作者：mainTel
@@ -30,6 +32,7 @@ public class ThreadTestActivity extends AppCompatActivity {
         ThreadTest1 threadTest1 = new ThreadTest1(synchronizedTest);
         threadTest1.setName("thread1");
         threadTest1.start();
+        EventBus.getDefault().post("hello thread1 from main");
         ThreadTest2 threadTest2 = new ThreadTest2(synchronizedTest);
         threadTest2.setName("thread2");
         threadTest2.start();

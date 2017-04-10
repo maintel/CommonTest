@@ -16,6 +16,8 @@ import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import maintel.commontest.R;
 
 /**
@@ -100,9 +102,29 @@ public class RxAndroidActivity extends AppCompatActivity {
                 createObservable();
                 break;
             case R.id.btn_rx_just:
-                observable = Observable.just(getHello1());
-//                observable.sub
+                Observable.just(getHello1()).subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String value) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
                 break;
         }
     }
+
 }

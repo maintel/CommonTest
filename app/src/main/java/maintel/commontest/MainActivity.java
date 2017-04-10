@@ -2,6 +2,7 @@ package maintel.commontest;
 
 import android.animation.ValueAnimator;
 import android.app.ActivityManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -42,6 +43,7 @@ import maintel.commontest.net.NetworkUtils;
 import maintel.commontest.recycleviewtest.RecycleViewTest;
 import maintel.commontest.rxandroid.RxAndroidActivity;
 import maintel.commontest.thread.ThreadTestActivity;
+import maintel.commontest.threadpool.ThreadPoolActivity;
 import maintel.commontest.utils.DeviceUtils;
 import maintel.commontest.utils.GsonTest;
 import maintel.commontest.webview.FineReportTestActivity;
@@ -72,10 +74,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //透明状态栏
 
         //透明导航栏
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//        }
         setContentView(R.layout.activity_main);
 //        openImage();
         ll_title = (MyTitleView) findViewById(R.id.ll_title);
@@ -303,7 +305,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 myIntent.setClass(this, RxAndroidActivity.class);
                 startActivity(myIntent);
                 break;
+            case R.id.btn_thread_pool:
+//                myIntent.setClass(this, ThreadPoolActivity.class);
+//                startActivity(myIntent);
+//                mHandler.sendEmptyMessageDelayed(11111, 1000);
+                test();
+                break;
         }
+    }
+
+    private void test() {
+        ProgressDialog pro = new ProgressDialog(this);
+       pro.setMessage("正在下载，请稍后...");
+        pro.show();
     }
 
     private ValueAnimator animator;
@@ -389,6 +403,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             i--;
                             mHandler.sendEmptyMessage(1002);
                         }
+                    }
+                    break;
+                case 11111:
+                    if (BuildConfig.DEBUG) Log.e("MainActivity", "11111");
+                    i++;
+                    mHandler.sendEmptyMessageDelayed(11111, 1000);
+                    if (i > 10) {
+                        mHandler.removeMessages(11111);
                     }
                     break;
             }
