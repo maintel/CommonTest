@@ -7,3 +7,6 @@
 - GreenDao 学习
 - Retrofit 学习
 - 本地解压测试
+- 线程同步学习
+- 理解EventBus的线程机制
+- 七牛云存储测试
