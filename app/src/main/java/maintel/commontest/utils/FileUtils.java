@@ -4,6 +4,8 @@ import android.os.Environment;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,6 +48,52 @@ public class FileUtils {
             is.close();
             return file;
         } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+
+    public static byte[] readFile(String url) {
+        return readFile(readFileRetFile(url));
+    }
+
+    public static byte[] readFile(File file) {
+        if (file == null) {
+            return null;
+        }
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream(file);
+            byte[] b = new byte[fileInputStream.available()];
+            fileInputStream.read(b);
+            return b;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (fileInputStream != null)
+                    fileInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static File readFileRetFile(String url) {
+        try {
+            File file = new File(url);
+            if (file.exists()) {
+                return file;
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }

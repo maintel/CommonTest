@@ -7,8 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ClipDrawable;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -26,12 +29,19 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
+
+import org.json.JSONObject;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import maintel.commontest.ZipExtractor.ZipExtractorActivity;
 import maintel.commontest.bean.BaseObjBean;
 import maintel.commontest.bean.BaseSequenceBean;
+import maintel.commontest.bean.CommonBean;
 import maintel.commontest.bean.LockBean;
 import maintel.commontest.bean.User;
 import maintel.commontest.customView.CustomViewActivity;
@@ -227,6 +237,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
 
+
                 break;
             case R.id.btn_open_album_3: //联网测试2
                 NetworkUtils.getNetworkService()
@@ -311,12 +322,99 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                mHandler.sendEmptyMessageDelayed(11111, 1000);
                 test();
                 break;
+            case R.id.btn_sound:
+                setMediaVolume(8);
+                SoundPool soundPool;
+                soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 5);
+                soundPool.load(this, R.raw.collide, 1);
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                soundPool.play(1, 1, 1, 0, 0, 1);
+
+                break;
+            case R.id.btn_upload_qiniu:
+                NetworkUtils.getNetworkService().getToken("yannantest")
+                        .enqueue(new MyCallBack<BaseObjBean<CommonBean>>() {
+                            @Override
+                            public void onFailure(String failMsg) {
+
+                            }
+
+                            @Override
+                            public void onError(String retCode, String message) {
+
+                            }
+
+                            @Override
+                            public void onSuccess(BaseObjBean<CommonBean> res) {
+                                Log.e("MainActivity", res.getData().getReturnValue());
+                                upload(res.getData().getReturnValue());
+                            }
+                        });
+//                NetworkUtils.uploadImageQiNiu().put();
+                break;
         }
+    }
+
+    private void upload(String token) {
+        File file = new File(Environment.getExternalStorageDirectory().getPath() + "/test.jpg");
+        NetworkUtils.uploadImageQiNiu().put(file, "adawdawdadadad.jpg", token, new UpCompletionHandler() {
+            @Override
+            public void complete(String key, ResponseInfo info, JSONObject response) {
+                //res包含hash、key等信息，具体字段取决于上传策略的设置
+                if(info.isOK())
+                {
+                    Log.i("qiniu", "Upload Success");
+                    getSignUrl(key);
+                }
+                else{
+                    Log.i("qiniu", "Upload Fail");
+                    //如果失败，这里可以把info信息上报自己的服务器，便于后面分析上传错误原因
+                }
+                Log.i("qiniu", key + ",\r\n " + info + ",\r\n " + response);
+            }
+        }, null);
+    }
+
+
+    private void getSignUrl(String key) {
+        NetworkUtils.getNetworkService().signUrl("http://ooozmplg3.bkt.clouddn.com/"+ key)
+                .enqueue(new MyCallBack<BaseObjBean<CommonBean>>() {
+                    @Override
+                    public void onFailure(String failMsg) {
+
+                    }
+
+                    @Override
+                    public void onError(String retCode, String message) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(BaseObjBean<CommonBean> res) {
+                        Log.e("MainActivity", res.getData().getReturnValue());
+                    }
+                });
+    }
+
+    /**
+     * 设置多媒体音量
+     * 这里我只写了多媒体和通话的音量调节，其他的只是参数不同，大家可仿照
+     */
+    public void setMediaVolume(int volume) {
+        AudioManager mAudioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
+        Log.d("MainActivity", "mAudioManager.getStreamMaxVolume( AudioManager.STREAM_MUSIC ):" + mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, //音量类型
+                volume,
+                0);
     }
 
     private void test() {
         ProgressDialog pro = new ProgressDialog(this);
-       pro.setMessage("正在下载，请稍后...");
+        pro.setMessage("正在下载，请稍后...");
         pro.show();
     }
 

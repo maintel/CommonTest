@@ -23,7 +23,10 @@ public class ThreadTestActivity extends AppCompatActivity {
         TextView textView = new TextView(this);
         textView.setText("ThreadTestActivity");
         setContentView(textView);
-        threadStart();
+//        threadStart();
+        new ThreadTest4().start();
+
+        new ThreadTest3().start();
 
     }
 

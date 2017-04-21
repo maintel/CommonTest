@@ -1,5 +1,9 @@
 package maintel.commontest.net;
 
+import com.qiniu.android.common.Zone;
+import com.qiniu.android.storage.Configuration;
+import com.qiniu.android.storage.UploadManager;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -20,6 +24,7 @@ public class NetworkUtils {
 
     public static NetworkService networkService;
 
+    static UploadManager uploadManager;
 
     /**
      * 访问网络
@@ -30,17 +35,12 @@ public class NetworkUtils {
 
         if (null == networkService) {
             OkHttpClient okHttpClient = new OkHttpClient.Builder()
-//                    .sslSocketFactory(getSSLSocketFactory(MyApplication.getInterface().getApplicationContext(), certificates))
-//                    .sslSocketFactory(getSSLSocketFactory())
-//                    .hostnameVerifier(get)
-                    .addNetworkInterceptor(new MyInterceptor())
+                    .addInterceptor(new MyInterceptor())
                     .connectTimeout(15, TimeUnit.SECONDS).build();
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
-                    .baseUrl("http://192.168.1.205:8080/")
-//                    .addConverterFactory(new MyConverterFactory())
+                    .baseUrl("http://192.168.1.59:8080/")
                     .addConverterFactory(GsonConverterFactory.create())
-//                    .addConverterFactory(ScalarsConverterFactory.create())
                     .build();
             networkService = retrofit.create(NetworkService.class);
         }
@@ -65,6 +65,27 @@ public class NetworkUtils {
         void onSuc();
 
         void onFail();
+    }
+
+
+    /**
+     * 七牛上传文件
+     */
+    public static UploadManager uploadImageQiNiu() {
+        if (uploadManager == null) {
+            Configuration config = new Configuration.Builder()
+                    .chunkSize(256 * 1024)  //分片上传时，每片的大小。 默认256K
+                    .putThreshhold(512 * 1024)  // 启用分片上传阀值。默认512K
+                    .connectTimeout(10) // 链接超时。默认10秒
+                    .responseTimeout(60) // 服务器响应超时。默认60秒
+//                    .recorder(recorder)  // recorder分片上传时，已上传片记录器。默认null
+//                    .recorder(recorder, keyGen)  // keyGen 分片上传时，生成标识符，用于片记录器区分是那个文件的上传记录
+                    .zone(Zone.zone1) // 设置区域，指定不同区域的上传域名、备用域名、备用IP。
+                    .build();
+// 重用uploadManager。一般地，只需要创建一个uploadManager对象
+            uploadManager = new UploadManager(config);
+        }
+        return uploadManager;
     }
 //
 //    /**

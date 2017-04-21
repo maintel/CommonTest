@@ -17,9 +17,27 @@ public class ThreadTest3 extends Thread {
         this.synchronizedTest = synchronizedTest;
     }
 
+    public ThreadTest3() {
+    }
+
     @Override
     public void run() {
-        synchronizedTest.test();
-        EventBus.getDefault().post("hello thread1 from thread3");
+        if (synchronizedTest != null)
+            synchronizedTest.test();
+
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < 1000; i++) {
+            try {
+                sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            EventBus.getDefault().post(i+"");
+        }
+
     }
 }

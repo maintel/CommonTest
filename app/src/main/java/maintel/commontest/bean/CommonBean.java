@@ -12,7 +12,15 @@ public class CommonBean {
      * returnValue : 1
      */
 
-    public String returnValue;
+    private String returnValue;
+
+    public String getReturnValue() {
+        return returnValue;
+    }
+
+    public void setReturnValue(String returnValue) {
+        this.returnValue = returnValue;
+    }
 
     @Override
     public String toString() {

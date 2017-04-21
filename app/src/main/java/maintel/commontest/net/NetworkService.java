@@ -1,5 +1,6 @@
 package maintel.commontest.net;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,9 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
@@ -85,12 +88,19 @@ public interface NetworkService {
     Call<ResponseBody> downLoad(@Url String url);
 
 
-    @POST("/user")
+    @GET("/user")
     Call<BaseSequenceBean<User>> getUserList();
 
 
     @GET("/user")
     Call<BaseObjBean<User>> getUserById(@Query("userId") String userId);
+
+    @GET("/qiniu/{bucket}")
+    Call<BaseObjBean<CommonBean>> getToken(@Path("bucket") String bucket);
+
+    @POST("/qiniu")
+    @FormUrlEncoded
+    Call<BaseObjBean<CommonBean>> signUrl(@Field("baseUrl") String baseUrl);
 
 
 }
