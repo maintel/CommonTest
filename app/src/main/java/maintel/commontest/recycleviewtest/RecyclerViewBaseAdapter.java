@@ -45,7 +45,7 @@ public abstract class RecyclerViewBaseAdapter<T> extends RecyclerView.Adapter<RV
 
     @Override
     public void onBindViewHolder(final RVHolder holder, final int position) {
-        onBindViewHolder(holder.getViewHolder(), position);
+        onBindViewHolder(holder.getViewHolder(), position,holder.getItemViewType());
         if (null != mOnItemClickListener) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -64,7 +64,7 @@ public abstract class RecyclerViewBaseAdapter<T> extends RecyclerView.Adapter<RV
             });
     }
 
-    public abstract void onBindViewHolder(MyViewHolder holder, int poi);
+    public abstract void onBindViewHolder(MyViewHolder holder, int poi,int viewType);
 
     @Override
     public int getItemCount() {

@@ -8,6 +8,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import maintel.commontest.bean.BaseObjBean;
 import maintel.commontest.thread.ThreadTestActivity;
 
 /**
@@ -62,6 +66,27 @@ public class ThreadTest {
     @Test
     public void testString(){
         System.out.println("0.59".compareTo("1.0t"));
+    }
+
+
+    @Test
+    public void testBean(){
+        BaseObjBean<List<String>> test = new BaseObjBean<>();
+
+        test.setData(getListString());
+
+        for (String s :
+                test.getData()) {
+            System.out.println(s);
+        }
+    }
+
+    private List<String> getListString() {
+        List<String> strings = new ArrayList<>();
+        for (int i = 0;i<5;i++){
+            strings.add("test : "+ i);
+        }
+        return strings;
     }
 
 }

@@ -102,5 +102,9 @@ public interface NetworkService {
     @FormUrlEncoded
     Call<BaseObjBean<CommonBean>> signUrl(@Field("baseUrl") String baseUrl);
 
+    @POST("/qiniu")
+    @FormUrlEncoded
+    Call<ResponseBody> test3(@Field("json") String add);
+
 
 }

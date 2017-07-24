@@ -1,5 +1,6 @@
 package maintel.commontest.utils;
 
+import android.content.Context;
 import android.os.Environment;
 
 import java.io.BufferedInputStream;
@@ -9,6 +10,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * 说明：
@@ -18,14 +22,13 @@ import java.io.InputStream;
  */
 
 public class FileUtils {
-    public static File saveFile(InputStream is,String filePath, String name) {
+    public static File saveFile(InputStream is, String filePath, String name) {
         try {
 //            File dir = new File(filePath);
 //            if (!dir.exists()) {// 判断文件目录是否存在
 //                //如果文件存在则删除已存在的文件夹。
 //                dir.mkdirs();
 //            }
-
             File file = new File(filePath, name);
             if (!file.exists()) {
                 File dir = new File(file.getParent());
@@ -52,7 +55,6 @@ public class FileUtils {
             return null;
         }
     }
-
 
 
     public static byte[] readFile(String url) {
@@ -97,5 +99,49 @@ public class FileUtils {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static InputStream readFileAssets(Context context, String name) {
+        try {
+//Return an AssetManager instance for your application's package
+            InputStream is = context.getResources().getAssets().open(name);
+//            int size = is.available();
+//
+//            // Read the entire asset into a local byte buffer.
+//            byte[] buffer = new byte[size];
+//            is.read(buffer);
+            return is;
+            // Convert the buffer into a string.
+            // Finally stick the string into the text view.
+        } catch (IOException e) {
+            // Should never happen!
+            return null;
+        }
+    }
+
+    public static String getFileMD5Assets(Context context, String name) {
+        return getFileMD5(readFileAssets(context, name));
+//        return MD5Util.getFileMD5(saveFile(readFileAssets(context, name), Environment.getExternalStorageDirectory().getPath() + "/", name));
+    }
+
+
+    public static String getFileMD5(InputStream is) {
+        try {
+            MessageDigest digest;
+            FileInputStream in;
+            byte buffer[] = new byte[1024];
+            int len;
+            digest = MessageDigest.getInstance("MD5");
+            BufferedInputStream bis = new BufferedInputStream(is);
+            while ((len = bis.read(buffer, 0, 1024)) != -1) {
+                digest.update(buffer, 0, len);
+            }
+            is.close();
+            BigInteger bigInt = new BigInteger(1, digest.digest());
+            return bigInt.toString(16);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "-1";
     }
 }

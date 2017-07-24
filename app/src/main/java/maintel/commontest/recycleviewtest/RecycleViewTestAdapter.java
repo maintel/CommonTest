@@ -24,7 +24,8 @@ public class RecycleViewTestAdapter<String> extends RecyclerViewBaseAdapter<Stri
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int poi) {
-        holder.setTextView(R.id.tv_test, list.get(poi).toString());
+    public void onBindViewHolder(MyViewHolder holder, int poi, int viewType) {
+
     }
+    
 }

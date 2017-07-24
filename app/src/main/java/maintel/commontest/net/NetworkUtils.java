@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -80,7 +81,7 @@ public class NetworkUtils {
                     .responseTimeout(60) // 服务器响应超时。默认60秒
 //                    .recorder(recorder)  // recorder分片上传时，已上传片记录器。默认null
 //                    .recorder(recorder, keyGen)  // keyGen 分片上传时，生成标识符，用于片记录器区分是那个文件的上传记录
-                    .zone(Zone.zone1) // 设置区域，指定不同区域的上传域名、备用域名、备用IP。
+//                    .zone(Zone.zone1) // 设置区域，指定不同区域的上传域名、备用域名、备用IP。
                     .build();
 // 重用uploadManager。一般地，只需要创建一个uploadManager对象
             uploadManager = new UploadManager(config);

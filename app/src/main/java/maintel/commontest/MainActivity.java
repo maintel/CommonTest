@@ -46,10 +46,13 @@ import maintel.commontest.bean.LockBean;
 import maintel.commontest.bean.User;
 import maintel.commontest.customView.CustomViewActivity;
 import maintel.commontest.customView.MyTitleView;
+import maintel.commontest.file.FileMd5TestActivity;
 import maintel.commontest.greendaotest.GreenDaoTestActivity;
+import maintel.commontest.handler.HandlerTestActivity;
 import maintel.commontest.net.MyCallBack;
 import maintel.commontest.net.NetworkCallBack;
 import maintel.commontest.net.NetworkUtils;
+import maintel.commontest.optimize.RuanYNTestActivity;
 import maintel.commontest.recycleviewtest.RecycleViewTest;
 import maintel.commontest.rxandroid.RxAndroidActivity;
 import maintel.commontest.thread.ThreadTestActivity;
@@ -103,6 +106,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         Intent myIntent = new Intent();
         switch (v.getId()) {
+            case R.id.btn_memory_opt:
+                myIntent.setClass(this, RuanYNTestActivity.class);
+                startActivity(myIntent);
+                break;
             case R.id.btn_open_album:
                 PhotoPickerIntent intent = new PhotoPickerIntent(MainActivity.this);
                 intent.setPhotoCount(9);
@@ -356,6 +363,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         });
 //                NetworkUtils.uploadImageQiNiu().put();
                 break;
+            case R.id.btn_file_md5:
+                myIntent.setClass(this, FileMd5TestActivity.class);
+                startActivity(myIntent);
+                break;
+            case R.id.btn_handler_test:
+                myIntent.setClass(this, HandlerTestActivity.class);
+                startActivity(myIntent);
+                break;
         }
     }
 
@@ -365,12 +380,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void complete(String key, ResponseInfo info, JSONObject response) {
                 //res包含hash、key等信息，具体字段取决于上传策略的设置
-                if(info.isOK())
-                {
+                if (info.isOK()) {
                     Log.i("qiniu", "Upload Success");
                     getSignUrl(key);
-                }
-                else{
+                } else {
                     Log.i("qiniu", "Upload Fail");
                     //如果失败，这里可以把info信息上报自己的服务器，便于后面分析上传错误原因
                 }
@@ -381,7 +394,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void getSignUrl(String key) {
-        NetworkUtils.getNetworkService().signUrl("http://ooozmplg3.bkt.clouddn.com/"+ key)
+        NetworkUtils.getNetworkService().signUrl("http://ooozmplg3.bkt.clouddn.com/" + key)
                 .enqueue(new MyCallBack<BaseObjBean<CommonBean>>() {
                     @Override
                     public void onFailure(String failMsg) {

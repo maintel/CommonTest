@@ -45,6 +45,9 @@
         <activity android:name=".thread.ThreadTestActivity" />
         <activity android:name=".rxandroid.RxAndroidActivity" />
         <activity android:name=".threadpool.ThreadPoolActivity" />
+        <activity android:name=".file.FileMd5TestActivity" />
+        <activity android:name=".handler.HandlerTestActivity" />
+        <activity android:name=".optimize.RuanYNTestActivity" />
     </application>
 
 </manifest>

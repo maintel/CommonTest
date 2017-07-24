@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -25,7 +26,8 @@ public class RecycleViewTest extends AppCompatActivity implements View.OnClickLi
     }
 
     RecyclerView recyclerView;
-    RecycleViewTestAdapter<String> testAdapter;
+    LoadMoreAdapter testAdapter;
+    int total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,32 @@ public class RecycleViewTest extends AppCompatActivity implements View.OnClickLi
         for (int i = 0; i < 10; i++) {
             list.add("testtest" + i);
         }
-        testAdapter = new RecycleViewTestAdapter<>(list, this);
+        testAdapter = new LoadMoreAdapter(list, this);
+        testAdapter.setLoadMoreListener(new LoadMoreListener() {
+            @Override
+            public void loadMore() {
+
+                if (total > 2) {
+                    testAdapter.showLoadNoMore();
+                }
+                List<String> list = new ArrayList<>();
+                for (int i = 0; i < 10; i++) {
+                    list.add("testtest more" + i);
+                }
+                testAdapter.upDateAdd(list);
+                total++;
+            }
+
+            @Override
+            public void loadError() {
+                Log.e("RecycleViewTest", "loadRrror");
+                List<String> list = new ArrayList<>();
+                for (int i = 0; i < 10; i++) {
+                    list.add("testtest error" + i);
+                }
+                testAdapter.upDateAdd(list);
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(testAdapter);
     }
