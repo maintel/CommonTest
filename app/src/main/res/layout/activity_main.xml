@@ -199,6 +199,12 @@
             <!--android:background="@drawable/image_main_menu_head_bg1" />-->
         </maintel.commontest.customView.MyTitleView>
 
+
+        <FrameLayout
+            android:id="@+id/myView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
     </RelativeLayout>
 
 

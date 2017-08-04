@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RelativeLayout.LayoutParams linearParams;
     ClipDrawable clipDrawable;
     TextView tv_title;
+    private View view;
+    private FrameLayout parentView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +101,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        clipDrawable = (ClipDrawable) iv_title.getDrawable();
 //        clipDrawable.setLevel(3133);
         linearParams = (RelativeLayout.LayoutParams) ll_title.getLayoutParams();
+
+
+        LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        view = vi.inflate(R.layout.activity_test, null);
+        parentView = (FrameLayout) findViewById(R.id.myView);
+        parentView.addView(view);
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.err.println("getMeasuredHeight:" + parentView.getMeasuredHeight());
+                System.err.println("getMeasuredWidth:" + parentView.getMeasuredWidth());
+                parentView.removeView(view);
+            }
+        }).start();
+
     }
 
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        System.out.println("MainActivity.onAttachedToWindow" + System.currentTimeMillis());
+
+
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        System.out.println("MainActivity.onWindowFocusChanged" + System.currentTimeMillis());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("MainActivity.onResume" + System.currentTimeMillis());
+    }
 
     @Override
     public void onClick(View v) {
