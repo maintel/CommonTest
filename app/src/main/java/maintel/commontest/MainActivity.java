@@ -61,7 +61,6 @@ import maintel.commontest.threadpool.ThreadPoolActivity;
 import maintel.commontest.utils.DeviceUtils;
 import maintel.commontest.utils.GsonTest;
 import maintel.commontest.webview.FineReportTestActivity;
-import me.iwf.photopicker.utils.PhotoPickerIntent;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -155,10 +154,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(myIntent);
                 break;
             case R.id.btn_open_album:
-                PhotoPickerIntent intent = new PhotoPickerIntent(MainActivity.this);
-                intent.setPhotoCount(9);
-                intent.setShowCamera(true);
-                startActivityForResult(intent, 10001);
+//                PhotoPickerIntent intent = new PhotoPickerIntent(MainActivity.this);
+//                intent.setPhotoCount(9);
+//                intent.setShowCamera(true);
+//                startActivityForResult(intent, 10001);
                 break;
             case R.id.btn_open_album_1: //联网测试1
 //                NetworkUtils.getNetworkService().updateLockName("1", "1", "cjy").enqueue(new Callback<CommonBean>() {
