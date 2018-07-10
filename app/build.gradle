@@ -2,15 +2,21 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "maintel.commontest"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
     }
     buildTypes {
         release {
@@ -23,6 +29,10 @@ android {
             java.srcDirs = ['src/main/java','src/main/java-gen']
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 greendao{
@@ -34,8 +44,8 @@ greendao{
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'me.iwf.photopicker:PhotoPicker:0.1.8'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'me.iwf.photopicker:PhotoPicker:0.9.5'
     compile 'cn.finalteam:galleryfinal:1.4.8.7'
     compile 'com.squareup.retrofit2:converter-scalars:2.0.0' //字符串 转换器
     compile 'com.squareup.okhttp3:okhttp:3.2.0' //网络

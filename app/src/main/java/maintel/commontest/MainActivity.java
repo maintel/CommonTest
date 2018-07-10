@@ -46,6 +46,7 @@ import maintel.commontest.bean.LockBean;
 import maintel.commontest.bean.User;
 import maintel.commontest.customView.CustomViewActivity;
 import maintel.commontest.customView.MyTitleView;
+import maintel.commontest.dataBinding.DataBindingTestActivity;
 import maintel.commontest.file.FileMd5TestActivity;
 import maintel.commontest.greendaotest.GreenDaoTestActivity;
 import maintel.commontest.handler.HandlerTestActivity;
@@ -412,6 +413,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_handler_test:
                 myIntent.setClass(this, HandlerTestActivity.class);
+                startActivity(myIntent);
+                break;
+            case R.id.btn_data_binding:
+                myIntent.setClass(this, DataBindingTestActivity.class);
                 startActivity(myIntent);
                 break;
         }
