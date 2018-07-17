@@ -1,4 +1,4 @@
-package maintel.commontest.recycleviewtest;
+package maintel.commontest.list;
 
 import android.util.SparseArray;
 import android.view.View;

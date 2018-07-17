@@ -18,14 +18,14 @@ import java.util.Map;
  * 备注：
  */
 
-public class LoadBitmap {
+public class LoadBitMap {
 
-    private static LoadBitmap INSTANCE;
+    private static LoadBitMap INSTANCE;
 
-    public static LoadBitmap getINSTANCE() {
+    public static LoadBitMap getINSTANCE() {
 
         if (INSTANCE == null) {
-            INSTANCE = new LoadBitmap();
+            INSTANCE = new LoadBitMap();
         }
 
         return INSTANCE;
@@ -33,7 +33,7 @@ public class LoadBitmap {
 
     int i;
 
-    private LoadBitmap() {
+    private LoadBitMap() {
     }
 
 

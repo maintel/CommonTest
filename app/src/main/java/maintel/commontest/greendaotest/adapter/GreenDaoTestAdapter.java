@@ -6,8 +6,8 @@ import java.util.List;
 
 import maintel.commontest.R;
 import maintel.commontest.entity.User;
-import maintel.commontest.recycleviewtest.MyViewHolder;
-import maintel.commontest.recycleviewtest.RecyclerViewBaseAdapter;
+import maintel.commontest.list.MyViewHolder;
+import maintel.commontest.list.RecyclerViewBaseAdapter;
 
 /**
  * 说明：

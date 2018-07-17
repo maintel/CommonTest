@@ -1,4 +1,4 @@
-package maintel.commontest.recycleviewtest;
+package maintel.commontest.list;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

@@ -61,7 +61,7 @@ public class ReelScrollView extends FrameLayout {
         //画笔的混合模式,为清除像素
         mClearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
 
-        reel = BitmapFactory.decodeResource(getResources(), R.drawable.ic_camera_black_48dp);
+        reel = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         srcReel = new Rect(0, 0, reel.getWidth(), reel.getHeight());
         Log.d("px", "srcReel-->" + srcReel.toString());
     }

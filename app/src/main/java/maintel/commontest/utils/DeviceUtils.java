@@ -53,8 +53,6 @@ import java.util.Map;
 import cn.finalteam.toolsfinal.StringUtils;
 import maintel.commontest.base.MyApplication;
 
-import static android.support.v7.widget.StaggeredGridLayoutManager.TAG;
-
 
 /**
  * Desction:设备相关工具类
@@ -247,6 +245,16 @@ public class DeviceUtils {
      */
     public static String getIMEI(Context context) {
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return "";
+        }
         String imei = tm.getDeviceId();
         if (StringUtils.isEmpty(imei)) {
             imei = "";
@@ -846,7 +854,7 @@ public class DeviceUtils {
                     try {
                         String lable = ctx.getPackageManager().getApplicationLabel(ctx.getPackageManager().getApplicationInfo(packageName,
                                 PackageManager.GET_META_DATA)).toString(); //Log.i(TAG,packageName + lable);
-                        Log.e("_____________",lable);
+                        Log.e("_____________", lable);
                     } catch (PackageManager.NameNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -858,7 +866,7 @@ public class DeviceUtils {
             List<ActivityManager.RunningTaskInfo> infos = am.getRunningTasks(1);
             // 获取最近运行的任务栈中的栈顶Activity(即用户当前操作的activity)的包名
             String packageName = am.getRunningTasks(1).get(0).topActivity.getClassName();
-            Log.e("_____________",packageName);
+            Log.e("_____________", packageName);
         }
     }
 }

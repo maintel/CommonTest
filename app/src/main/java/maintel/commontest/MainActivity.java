@@ -20,15 +20,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.loglibrary.MyLogLibrary;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 
@@ -54,16 +53,13 @@ import maintel.commontest.net.MyCallBack;
 import maintel.commontest.net.NetworkCallBack;
 import maintel.commontest.net.NetworkUtils;
 import maintel.commontest.optimize.RuanYNTestActivity;
-import maintel.commontest.recycleviewtest.RecycleViewTest;
+import maintel.commontest.list.RecycleViewTest;
 import maintel.commontest.rxandroid.RxAndroidActivity;
 import maintel.commontest.thread.ThreadTestActivity;
-import maintel.commontest.threadpool.ThreadPoolActivity;
 import maintel.commontest.utils.DeviceUtils;
 import maintel.commontest.utils.GsonTest;
 import maintel.commontest.webview.FineReportTestActivity;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -109,20 +105,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         parentView.addView(view);
 
 
+        MyLogLibrary.init(this);
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+
+                for (int i = 0; i < 100; i++) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Log.d("LOG", "test" + i);
                 }
-                System.err.println("getMeasuredHeight:" + parentView.getMeasuredHeight());
-                System.err.println("getMeasuredWidth:" + parentView.getMeasuredWidth());
-                parentView.removeView(view);
             }
         }).start();
 
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                for (int i = 0; i < 10; i++) {
+//                    Log.e("LOG", "test" + i);
+//                    try {
+//                        Thread.sleep(3000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }).start();
     }
 
     @Override

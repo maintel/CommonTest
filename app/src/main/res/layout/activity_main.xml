@@ -166,6 +166,7 @@
                 android:id="@+id/btn_data_binding"
                 android:layout_width="wrap_content"
                 android:text="DATA-BINDING"
+                android:onClick="onClick"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>

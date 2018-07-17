@@ -1,4 +1,4 @@
-package maintel.commontest.recycleviewtest;
+package maintel.commontest.list;
 
 import android.content.Context;
 

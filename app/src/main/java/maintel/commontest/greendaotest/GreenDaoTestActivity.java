@@ -2,13 +2,11 @@ package maintel.commontest.greendaotest;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.annotation.NotNull;
-import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,17 +14,15 @@ import java.util.Map;
 import java.util.Random;
 
 import butterknife.Bind;
-import maintel.commontest.BuildConfig;
 import maintel.commontest.R;
 import maintel.commontest.base.BaseActivity;
 import maintel.commontest.base.Content;
-import maintel.commontest.base.MyApplication;
 import maintel.commontest.entity.DaoSession;
 import maintel.commontest.entity.User;
 import maintel.commontest.entity.UserDao;
 import maintel.commontest.greendaotest.adapter.GreenDaoTestAdapter;
 import maintel.commontest.greendaotest.db.DaoUtils;
-import maintel.commontest.recycleviewtest.RecyclerViewBaseAdapter;
+import maintel.commontest.list.RecyclerViewBaseAdapter;
 
 /**
  * 说明：greenDao测试

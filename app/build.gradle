@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion.toString().toInteger()
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "maintel.commontest"
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -44,7 +44,7 @@ greendao{
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile "com.android.support:appcompat-v7:$rootProject.ext.android_support"
     compile 'me.iwf.photopicker:PhotoPicker:0.9.5'
     compile 'cn.finalteam:galleryfinal:1.4.8.7'
     compile 'com.squareup.retrofit2:converter-scalars:2.0.0' //字符串 转换器
@@ -61,4 +61,6 @@ dependencies {
 
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.qiniu:qiniu-android-sdk:7.3.+' //七牛云
+
+    compile project(':loglibrary')
 }

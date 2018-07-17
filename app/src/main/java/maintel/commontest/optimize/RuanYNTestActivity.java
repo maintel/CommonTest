@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 
 import maintel.commontest.R;
 import maintel.commontest.base.BaseActivity;
-import maintel.commontest.utils.LoadBitmap;
+import maintel.commontest.utils.LoadBitMap;
 
 /**
  * 说明：
@@ -37,7 +37,7 @@ public class RuanYNTestActivity extends BaseActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoadBitmap.getINSTANCE().addBitmapCache(getResources(), R.drawable.oom3);
+                LoadBitMap.getINSTANCE().addBitmapCache(getResources(), R.drawable.oom3);
             }
         });
         linearLayout.addView(button2);

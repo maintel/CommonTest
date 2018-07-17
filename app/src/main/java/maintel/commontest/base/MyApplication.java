@@ -38,7 +38,7 @@ public class MyApplication extends Application {
                         .enableWebKitInspector(
                                 Stetho.defaultInspectorModulesProvider(this))
                         .build());
-        AbstractDBHelper.initDBHelper(getApplicationContext());
+//        AbstractDBHelper.initDBHelper(getApplicationContext());
 //        MyUpOpenHelper helper = new MyUpOpenHelper(this, ENCRYPTED ? "notes-db-encrypted" : "notes-db");
 //        Database db = ENCRYPTED ? helper.getEncryptedWritableDb("super-secret") : helper.getWritableDb();
 //        daoSession = new DaoMaster(db).newSession();
