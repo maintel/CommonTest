@@ -14,17 +14,22 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.baselibrary.utils.DeviceUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 /**
  * 监听 log 的 service
@@ -65,6 +70,7 @@ public class LogService extends Service implements View.OnClickListener {
     private LinearLayout rootView;
     private Button btnShowHide;
     private ListView lvLogs;
+    private LogListAdapter adapter;
 
     private WindowManager windowManager;
     private WindowManager.LayoutParams layoutParams;
@@ -82,18 +88,32 @@ public class LogService extends Service implements View.OnClickListener {
         rootView = (LinearLayout) inflater.inflate(R.layout.log_window, null);
         btnShowHide = rootView.findViewById(R.id.btn_show_hide);
         btnShowHide.setOnClickListener(this);
+        btnShowHide.setOnTouchListener(new MyTouchListener());
         lvLogs = rootView.findViewById(R.id.lv_log_list);
-
+        lvLogs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                layoutParams.x = 0;
+                layoutParams.y = -30;
+                layoutParams.width = 500;
+                layoutParams.height = 200;
+                windowManager.updateViewLayout(rootView, layoutParams);
+            }
+        });
+        adapter = new LogListAdapter(new ArrayList<String>(), this);
+        lvLogs.setAdapter(adapter);
         windowManager = (WindowManager) this.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         layoutParams = new WindowManager.LayoutParams();
         // fixme 这里是因为 在 targetSdkVersion >= 28 时不再支持 TYPE_PHONE 型，必须使用 TYPE_APPLICATION_OVERLAY
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             //TYPE_APPLICATION_OVERLAY 在应用外还会显示
-            layoutParams.type = WindowManager.LayoutParams.LAST_APPLICATION_WINDOW;
+            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
         } else {
             layoutParams.type = WindowManager.LayoutParams.TYPE_PHONE;
         }
         System.out.println("rootView.getWidth()::" + rootView.getWidth());
+        layoutParams.x = 30;
+        layoutParams.y = 30;
         layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
         layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
         layoutParams.format = PixelFormat.RGBA_8888;
@@ -109,10 +129,22 @@ public class LogService extends Service implements View.OnClickListener {
             if (lvLogs.getVisibility() == View.VISIBLE) {
                 btnShowHide.setText("显示");
                 isActive = false;
+                layoutParams.width = btnShowHide.getWidth();
+                layoutParams.height = btnShowHide.getHeight();
+                windowManager.updateViewLayout(rootView, layoutParams);
+                layoutParams.x = 0;
+                layoutParams.y = 30;
+                windowManager.updateViewLayout(rootView, layoutParams);
+
                 lvLogs.setVisibility(View.GONE);
             } else {
                 btnShowHide.setText("关闭");
                 isActive = true;
+                layoutParams.width = DeviceUtils.getPhoneWidth(this);
+                layoutParams.height = DeviceUtils.getPhoneHight(this) / 2;
+                layoutParams.x = 0;
+                layoutParams.y = 30;
+                windowManager.updateViewLayout(rootView, layoutParams);
                 lvLogs.setVisibility(View.VISIBLE);
             }
         }
@@ -133,7 +165,7 @@ public class LogService extends Service implements View.OnClickListener {
                 process = Runtime.getRuntime().exec(new String[]{"logcat", "LOG:V *:S"});
                 reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 String line;
-                while ((line = reader.readLine()) != null && isActive) {
+                while ((line = reader.readLine()) != null) {
                     //fixme 在这个流程中做输出操作一定要做好过滤操作，否则会造成死循环最终爆掉 logcat 固有的 buffer！！！
                     //使用这种方法的不好之处就是 需要通过正则或者什么来判断读取到的日志级别
                     Message message = new Message();
@@ -152,6 +184,48 @@ public class LogService extends Service implements View.OnClickListener {
     };
 
     public final static int LOG_MSG = 998;
+
+    class MyTouchListener implements View.OnTouchListener {
+
+        int lastX = 0;
+        int lastY = 0;
+        boolean isMove = false;
+        int lastButtonX = 0;
+        int lastButtonY = 0;
+
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (isActive) {
+                return false;
+            }
+
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    isMove = false;
+                    lastX = (int) motionEvent.getRawX();
+                    lastY = (int) motionEvent.getRawY();
+                    lastButtonX = layoutParams.x;
+                    lastButtonY = layoutParams.y;
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    int moveX = (int) motionEvent.getRawX() - lastX;
+                    int moveY = (int) motionEvent.getRawY() - lastY;
+                    // 需要一个阈值来判断是移动还是点击
+                    if (Math.abs(moveX) > 5 || Math.abs(moveY) > 5) {
+                        isMove = true;
+                        layoutParams.x = lastButtonX + moveX;
+                        layoutParams.y = lastButtonY + moveY;
+                        windowManager.updateViewLayout(rootView, layoutParams);
+                    } else {
+                        isMove = false;
+                    }
+                    break;
+                case MotionEvent.ACTION_UP:
+                    return isMove;
+            }
+            return false;
+        }
+    }
 
 
     static class MyHandler extends Handler {
@@ -176,7 +250,8 @@ public class LogService extends Service implements View.OnClickListener {
     }
 
     private void refreshUI(String log) {
-
+        if (adapter != null)
+            adapter.setLogItem(log);
     }
 
     private boolean isGrant() {
