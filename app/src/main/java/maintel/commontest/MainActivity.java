@@ -47,6 +47,7 @@ import maintel.commontest.customView.CustomViewActivity;
 import maintel.commontest.customView.MyTitleView;
 import maintel.commontest.dataBinding.DataBindingTestActivity;
 import maintel.commontest.file.FileMd5TestActivity;
+import maintel.commontest.gifimage.GifImageViewTestActivity;
 import maintel.commontest.greendaotest.GreenDaoTestActivity;
 import maintel.commontest.handler.HandlerTestActivity;
 import maintel.commontest.net.MyCallBack;
@@ -427,6 +428,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_data_binding:
                 myIntent.setClass(this, DataBindingTestActivity.class);
+                startActivity(myIntent);
+                break;
+            case R.id.btn_data_gif:
+                myIntent.setClass(this, GifImageViewTestActivity.class);
                 startActivity(myIntent);
                 break;
         }

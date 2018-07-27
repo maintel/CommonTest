@@ -62,5 +62,7 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.qiniu:qiniu-android-sdk:7.3.+' //七牛云
 
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
+
     compile project(':loglibrary')
 }

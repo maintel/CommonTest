@@ -169,6 +169,13 @@
                 android:onClick="onClick"
                 android:layout_height="wrap_content" />
 
+            <Button
+                android:id="@+id/btn_data_gif"
+                android:layout_width="wrap_content"
+                android:text="GIF_TEST"
+                android:onClick="onClick"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
 

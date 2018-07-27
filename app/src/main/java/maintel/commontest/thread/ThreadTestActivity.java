@@ -24,10 +24,19 @@ public class ThreadTestActivity extends AppCompatActivity {
         textView.setText("ThreadTestActivity");
         setContentView(textView);
 //        threadStart();
-        new ThreadTest4().start();
+//        new ThreadTest4().start();
+//
+//        new ThreadTest3().start();
 
-        new ThreadTest3().start();
-
+//        RunnableA a = new RunnableA();
+//
+//        new Thread(a).start();
+            // test 在主线程中执行
+//        a.test();
+        ThreadA threadA = new ThreadA();
+        threadA.start();
+        // test 在主线程执行
+        threadA.test();
     }
 
     public void threadStart() {
