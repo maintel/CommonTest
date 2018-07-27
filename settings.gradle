@@ -1,1 +1,1 @@
-include ':app', ':loglibrary', ':baselibrary'
+include ':app', ':loglibrary', ':baselibrary',':zxing'

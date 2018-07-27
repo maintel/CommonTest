@@ -4,15 +4,11 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion.toString().toInteger()
 
 
-
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion.toString().toInteger()
         targetSdkVersion rootProject.ext.targetSdkVersion.toString().toInteger()
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -25,12 +21,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:appcompat-v7:$rootProject.ext.android_support"
 
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.android_support"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-    compile project(":baselibrary")
+    // https://mvnrepository.com/artifact/com.google.zxing/core
+    compile group: 'com.google.zxing', name: 'core', version: '3.3.2'
 }
