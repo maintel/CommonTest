@@ -36,7 +36,6 @@ import com.a17zuoye.zxing.camera.CameraManager;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
-import com.yiqizuoye.manager.EventCenterManager;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -54,8 +53,8 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
     private static final String TAG = CaptureActivity.class.getSimpleName();
 
-    public static final int EVENT_SCAN_COMPLETE = 40014;
     public static final String SCAN_RESULT = "SCAN_RESULT";
+    public static final int SCAN_RESULT_CODE = 90444;
 
     private CameraManager cameraManager;
     private CaptureActivityHandler handler;
@@ -212,10 +211,9 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
      * @param barcode     A greyscale bitmap of the camera data which was decoded.
      */
     public void handleDecode(Result rawResult, Bitmap barcode, float scaleFactor) {
-        EventCenterManager.synSendEvent(new EventCenterManager.EventMessage(EVENT_SCAN_COMPLETE, rawResult.getText()));
         Intent intent = new Intent();
         intent.putExtra(SCAN_RESULT, rawResult.getText());
-        setResult(4044, intent);
+        setResult(SCAN_RESULT_CODE, intent);
         finish();
     }
 
