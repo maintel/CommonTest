@@ -24,9 +24,9 @@ import com.a17zuoye.zxing.R;
 
 /**
  * Abstraction over the {@link Camera} API that helps open them and return their metadata.
- *
+ * <p>
  * by jieyu.chen
- *
+ * <p>
  * 因为打开相机比较耗时，所以放在子线程中来
  */
 @SuppressWarnings("deprecation") // camera APIs
@@ -38,7 +38,7 @@ public final class OpenCameraInterface extends Thread {
 
     private CaptureActivityHandler handler;
 
-    public OpenCameraInterface(CaptureActivityHandler handler) {
+    public void setHandler(CaptureActivityHandler handler) {
         this.handler = handler;
     }
 
@@ -82,7 +82,11 @@ public final class OpenCameraInterface extends Thread {
 
     @Override
     public void run() {
-        openCamera = open();
+        try {
+            openCamera = open();
+        } catch (Exception e) {
+            openCamera = null;
+        }
         handler.sendEmptyMessage(R.id.open_camera_complete);
     }
 }

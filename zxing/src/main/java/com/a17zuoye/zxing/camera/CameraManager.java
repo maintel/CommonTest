@@ -50,7 +50,7 @@ public final class CameraManager {
     private static final int MAX_FRAME_HEIGHT = 675; // = 5/8 * 1080
 
     private final Context context;
-    private final CameraConfigurationManager configManager;
+    private CameraConfigurationManager configManager;
     private OpenCamera camera;
     private AutoFocusManager autoFocusManager;
     private Rect framingRect;
@@ -66,17 +66,27 @@ public final class CameraManager {
      * Preview frames are delivered here, which we pass on to the registered handler. Make sure to
      * clear the handler so it will only receive one message.
      */
-    private final PreviewCallback previewCallback;
+    private PreviewCallback previewCallback;
 
     public CameraManager(Context context) {
         this.context = context;
-        this.configManager = new CameraConfigurationManager(context);
+
+    }
+
+
+    public void init() {
+        configManager = new CameraConfigurationManager(context);
         previewCallback = new PreviewCallback(configManager);
+        initialized = false;
     }
 
     public void openCamera(CaptureActivityHandler handler) {
         // 这里把打开相机放在子线程中
-        threadOpen = new OpenCameraInterface(handler);
+        if (camera != null) {
+            return;
+        }
+        threadOpen = new OpenCameraInterface();
+        threadOpen.setHandler(handler);
         threadOpen.start();
     }
 

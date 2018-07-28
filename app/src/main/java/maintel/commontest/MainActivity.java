@@ -27,6 +27,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.a17zuoye.zxing.CaptureActivity;
 import com.example.loglibrary.MyLogLibrary;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
@@ -107,20 +108,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         MyLogLibrary.init(this);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                for (int i = 0; i < 100; i++) {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    Log.d("LOG", "test" + i);
-                }
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                for (int i = 0; i < 100; i++) {
+//                    try {
+//                        Thread.sleep(100);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    Log.d("LOG", "test" + i);
+//                }
+//            }
+//        }).start();
 
 //        new Thread(new Runnable() {
 //            @Override
@@ -432,6 +433,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_data_gif:
                 myIntent.setClass(this, GifImageViewTestActivity.class);
+                startActivity(myIntent);
+                break;
+            case R.id.btn_zxing_test:
+                myIntent.setClass(this, CaptureActivity.class);
                 startActivity(myIntent);
                 break;
         }

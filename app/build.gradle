@@ -65,4 +65,5 @@ dependencies {
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
 
     compile project(':loglibrary')
+    compile project(':zxing')
 }

@@ -16,13 +16,18 @@
 
 package com.a17zuoye.zxing;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
@@ -31,6 +36,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.a17zuoye.zxing.camera.CameraManager;
 import com.google.zxing.BarcodeFormat;
@@ -55,6 +61,8 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
     public static final String SCAN_RESULT = "SCAN_RESULT";
     public static final int SCAN_RESULT_CODE = 90444;
+
+    private static final int CAMERA_PER_CODE = 9001;
 
     private CameraManager cameraManager;
     private CaptureActivityHandler handler;
@@ -90,13 +98,23 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
         hasSurface = false;
         ambientLightManager = new AmbientLightManager(this);
+        cameraManager = new CameraManager(getApplication());
+
+
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        System.out.println("a all dead");
+    }
+
+    private boolean isCheckPermiss = false;
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        cameraManager = new CameraManager(getApplication());
+        cameraManager.init();
 
         viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
         viewfinderView.setCameraManager(cameraManager);
@@ -105,10 +123,12 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         statusView = (TextView) findViewById(R.id.status_view);
         statusView.setVisibility(View.GONE);
 
-        handler = new CaptureActivityHandler(this, decodeFormats, decodeHints, characterSet, cameraManager);
-        cameraManager.openCamera(handler);
-
         ambientLightManager.start(cameraManager);
+        if (!isCheckPermiss) {
+            checkPermiss();
+        } else {
+            isCheckPermiss = false;
+        }
 
         decodeFormats = null;
         characterSet = null;
@@ -123,17 +143,56 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
             // Install the callback and wait for surfaceCreated() to init the camera.
             surfaceHolder.addCallback(this);
         }
+    }
 
+    private void checkPermiss() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                isCheckPermiss = true;
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, CAMERA_PER_CODE);
+            } else {
+                openCamera();
+            }
+        } else {
+            openCamera();
+        }
+    }
+
+    private void openCamera() {
+        handler = new CaptureActivityHandler(this, decodeFormats, decodeHints, characterSet, cameraManager);
+        cameraManager.openCamera(handler);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == CAMERA_PER_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openCamera();
+            } else {
+                //权限拒绝
+                noCameraPermission();
+            }
+        }
+    }
+
+    private void noCameraPermission() {
+        Toast.makeText(this, "相机权限被拒绝", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
     protected void onPause() {
-        if (handler != null) {
-            handler.quitSynchronously();
-            handler = null;
+
+        if (!isCheckPermiss) {
+            if (handler != null) {
+                handler.quitSynchronously();
+                handler = null;
+            }
+            cameraManager.closeDriver();
         }
+
         ambientLightManager.stop();
-        cameraManager.closeDriver();
         if (!hasSurface) {
             SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
             SurfaceHolder surfaceHolder = surfaceView.getHolder();

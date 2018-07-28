@@ -117,6 +117,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="onClick"
                 android:text="ThreadTest" />
+
             <Button
                 android:id="@+id/btn_rx_test"
                 android:layout_width="wrap_content"
@@ -165,16 +166,23 @@
             <Button
                 android:id="@+id/btn_data_binding"
                 android:layout_width="wrap_content"
-                android:text="DATA-BINDING"
+                android:layout_height="wrap_content"
                 android:onClick="onClick"
-                android:layout_height="wrap_content" />
+                android:text="DATA-BINDING" />
 
             <Button
                 android:id="@+id/btn_data_gif"
                 android:layout_width="wrap_content"
-                android:text="GIF_TEST"
+                android:layout_height="wrap_content"
                 android:onClick="onClick"
-                android:layout_height="wrap_content" />
+                android:text="GIF_TEST" />
+
+            <Button
+                android:id="@+id/btn_zxing_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="ZXING" />
 
         </LinearLayout>
 
@@ -218,7 +226,7 @@
         <FrameLayout
             android:id="@+id/myView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 
