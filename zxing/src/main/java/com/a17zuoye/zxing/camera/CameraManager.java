@@ -151,26 +151,29 @@ public final class CameraManager {
      * Closes the camera driver if still in use.
      */
     public synchronized void closeDriver() {
-        if (camera != null) {
-            // 结束也是耗时操作 方在子线程中
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        // 为了防止在快速切换时出现问题，这里等待打开操作完成后再结束
-                        threadOpen.join();
-                    } catch (InterruptedException e) {
-                        Log.e(TAG, e.toString());
+
+        // 结束也是耗时操作 方在子线程中
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    // 为了防止在快速切换时出现问题，这里等待打开操作完成后再结束
+                    threadOpen.join();
+                    if (camera == null) {
+                        camera = threadOpen.getOpenCamera();
                     }
-                    camera.getCamera().release();
-                    camera = null;
+                } catch (InterruptedException e) {
+                    Log.e(TAG, e.toString());
                 }
-            }).start();
-            // Make sure to clear these each time we close the camera, so that any scanning rect
-            // requested by intent is forgotten.
-            framingRect = null;
-            framingRectInPreview = null;
-        }
+                camera.getCamera().release();
+                camera = null;
+            }
+        }).start();
+        // Make sure to clear these each time we close the camera, so that any scanning rect
+        // requested by intent is forgotten.
+        framingRect = null;
+        framingRectInPreview = null;
+
     }
 
     /**
