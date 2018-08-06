@@ -83,6 +83,7 @@ public final class CameraManager {
     public void openCamera(CaptureActivityHandler handler) {
         // 这里把打开相机放在子线程中
         if (camera != null) {
+            Log.e(TAG, "camera not null");
             return;
         }
         threadOpen = new OpenCameraInterface();
@@ -154,21 +155,23 @@ public final class CameraManager {
 
         // 结束也是耗时操作 方在子线程中
         new Thread(new Runnable() {
+            OpenCamera cameraClose;
+
             @Override
             public void run() {
                 try {
                     // 为了防止在快速切换时出现问题，这里等待打开操作完成后再结束
                     threadOpen.join();
-                    if (camera == null) {
-                        camera = threadOpen.getOpenCamera();
-                    }
+                    cameraClose = threadOpen.getOpenCamera();
                 } catch (InterruptedException e) {
                     Log.e(TAG, e.toString());
                 }
-                camera.getCamera().release();
-                camera = null;
+                Log.e(TAG, "close camera now");
+                cameraClose.getCamera().release();
             }
         }).start();
+        camera = null;
+
         // Make sure to clear these each time we close the camera, so that any scanning rect
         // requested by intent is forgotten.
         framingRect = null;

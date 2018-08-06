@@ -103,12 +103,6 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        System.out.println("a all dead");
-    }
-
     private boolean isCheckPermiss = false;
 
     @Override

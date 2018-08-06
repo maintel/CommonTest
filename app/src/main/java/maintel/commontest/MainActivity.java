@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         parentView = (FrameLayout) findViewById(R.id.myView);
         parentView.addView(view);
 
-
+        mHandler.sendEmptyMessageDelayed(1112, 3000);
         MyLogLibrary.init(this);
 //        new Thread(new Runnable() {
 //            @Override
@@ -436,8 +436,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(myIntent);
                 break;
             case R.id.btn_zxing_test:
-                myIntent.setClass(this, CaptureActivity.class);
-                startActivity(myIntent);
+//                myIntent.setClass(this, CaptureActivity.class);
+//                startActivity(myIntent);
+                mHandler.removeMessages(1112);
                 break;
         }
     }
@@ -591,6 +592,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (i > 10) {
                         mHandler.removeMessages(11111);
                     }
+                    break;
+                case 1112:
+                    Log.e("handlerTest", "111111111111111");
                     break;
             }
         }
