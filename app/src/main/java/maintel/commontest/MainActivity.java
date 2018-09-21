@@ -29,6 +29,7 @@ import android.widget.TextView;
 
 import com.a17zuoye.zxing.CaptureActivity;
 import com.example.loglibrary.MyLogLibrary;
+import com.parallaxscrolling.ParallaxMainActivity;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 
@@ -39,6 +40,7 @@ import java.io.IOException;
 import java.util.List;
 
 import maintel.commontest.ZipExtractor.ZipExtractorActivity;
+import maintel.commontest.anim.AnimTestActivity;
 import maintel.commontest.bean.BaseObjBean;
 import maintel.commontest.bean.BaseSequenceBean;
 import maintel.commontest.bean.CommonBean;
@@ -162,6 +164,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         Intent myIntent = new Intent();
         switch (v.getId()) {
+            case R.id.btn_trans:
+                myIntent.setClass(this, ParallaxMainActivity.class);
+                startActivity(myIntent);
+                break;
             case R.id.btn_memory_opt:
                 myIntent.setClass(this, RuanYNTestActivity.class);
                 startActivity(myIntent);
@@ -216,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Call<BaseSequenceBean<User>> call = NetworkUtils.getNetworkService().getUserList();
                 try {
                     List<User> list = call.execute().body().getData(); //不能在主线程中执行啊
-                    for (User user :
+                    for (User user:
                             list) {
                         if (BuildConfig.DEBUG) Log.d("MainActivity", user.toString());
                     }
@@ -310,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             public void onSuc(List<LockBean> resBody) {
                                 if (BuildConfig.DEBUG) Log.e("MainActivity", "onSuc");
                                 if (BuildConfig.DEBUG) Log.d("MainActivity", "resBody:" + resBody);
-                                for (LockBean bean :
+                                for (LockBean bean:
                                         resBody) {
                                     if (BuildConfig.DEBUG) Log.e("MainActivity", bean.toString());
                                 }
@@ -433,6 +439,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_data_gif:
                 myIntent.setClass(this, GifImageViewTestActivity.class);
+                startActivity(myIntent);
+                break;
+            case R.id.btn_anim_test:
+                myIntent.setClass(this, AnimTestActivity.class);
                 startActivity(myIntent);
                 break;
             case R.id.btn_zxing_test:

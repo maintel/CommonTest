@@ -9,6 +9,7 @@
       <module fileurl="file://D:/asWorkSpace/CommonTest/baselibrary/baselibrary.iml" filepath="D:/asWorkSpace/CommonTest/baselibrary/baselibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/loglibrary/loglibrary.iml" filepath="$PROJECT_DIR$/loglibrary/loglibrary.iml" />
       <module fileurl="file://D:/asWorkSpace/CommonTest/loglibrary/loglibrary.iml" filepath="D:/asWorkSpace/CommonTest/loglibrary/loglibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parallaxscrolling/parallaxscrolling.iml" filepath="$PROJECT_DIR$/parallaxscrolling/parallaxscrolling.iml" />
       <module fileurl="file://$PROJECT_DIR$/zxing/zxing.iml" filepath="$PROJECT_DIR$/zxing/zxing.iml" />
       <module fileurl="file://D:/asWorkSpace/CommonTest/zxing/zxing.iml" filepath="D:/asWorkSpace/CommonTest/zxing/zxing.iml" />
     </modules>

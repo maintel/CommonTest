@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.parallaxscrolling">
+
+
+    <application>
+
+        <activity android:name=".ParallaxMainActivity" />
+
+    </application>
+
+</manifest>

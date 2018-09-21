@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply plugin: 'org.greenrobot.greendao'
 
 android {
@@ -66,4 +67,11 @@ dependencies {
 
     compile project(':loglibrary')
     compile project(':zxing')
+    compile project(':parallaxscrolling')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+}
+repositories {
+    mavenCentral()
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,227 +8,296 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="maintel.commontest.MainActivity">
 
-    <RelativeLayout
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="73dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content" />
 
-            <Button
-                android:id="@+id/btn_memory_opt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="内存优化" />
-
-            <Button
-                android:id="@+id/btn_open_album"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="选择图片" />
-
-            <Button
-                android:id="@+id/btn_open_album_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="联网测试1" />
-
-            <Button
-                android:id="@+id/btn_open_album_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:onClick="onClick"
-                android:paddingRight="100dp"
-                android:text="联网测试2" />
-
-            <Button
-                android:id="@+id/btn_open_album_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="联网测试3" />
-
-            <Button
-                android:id="@+id/btn_recycle_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="recycleTest" />
-
-            <Button
-                android:id="@+id/btn_green_dao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="greenDao" />
-
-            <Button
-                android:id="@+id/btn_fine_report"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="fineReport" />
-
-            <Button
-                android:id="@+id/btn_gson_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="gsonTest" />
-
-            <Button
-                android:id="@+id/btn_go_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="gsonTest" />
-
-            <Button
-                android:id="@+id/btn_go_custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="customView" />
-
-            <Button
-                android:id="@+id/btn_go_zip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="下载解压测试" />
-
-            <Button
-                android:id="@+id/btn_get_top_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="getTopActivityTest" />
-
-            <Button
-                android:id="@+id/btn_thread_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="ThreadTest" />
-
-            <Button
-                android:id="@+id/btn_rx_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="RxAndroidTest" />
-
-            <Button
-                android:id="@+id/btn_thread_pool"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="ThreadPoolTest" />
-
-
-            <Button
-                android:id="@+id/btn_sound"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="BTNSound" />
-
-            <Button
-                android:id="@+id/btn_upload_qiniu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="BTNUploadQiniu" />
-
-            <Button
-                android:id="@+id/btn_file_md5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="FILE_MD5_TEST" />
-
-
-            <Button
-                android:id="@+id/btn_handler_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="HANDLER_TEST" />
-
-
-            <Button
-                android:id="@+id/btn_data_binding"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="DATA-BINDING" />
-
-            <Button
-                android:id="@+id/btn_data_gif"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="GIF_TEST" />
-
-            <Button
-                android:id="@+id/btn_zxing_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="ZXING" />
-
-        </LinearLayout>
-
-
-        <maintel.commontest.customView.MyTitleView
-            android:id="@+id/ll_title"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="233dp">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/iv_title"
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/image_main_menu_head_bg2"
-                android:visibility="visible" />
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:text="awdawdawdawdawdfawfawfawfawfasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="match_parent"
-                android:layout_height="73dp"
-                android:onClick="onClick" />
-
-            <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="167dp"-->
-            <!--android:background="@drawable/image_main_menu_head_bg" />-->
-            <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--android:background="@drawable/image_main_menu_head_bg1" />-->
-        </maintel.commontest.customView.MyTitleView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="73dp"
+                        android:orientation="vertical">
 
 
-        <FrameLayout
-            android:id="@+id/myView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                        <Button
 
-    </RelativeLayout>
+                            android:id="@+id/btn_trans"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="onClick"
+                            android:text="视差滑动" />
+
+                        <Button
+
+                            android:id="@+id/btn_memory_opt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="onClick"
+                            android:text="内存优化" />
+
+                        <Button
+                            android:id="@+id/btn_open_album"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="选择图片" />
+
+                        <Button
+                            android:id="@+id/btn_open_album_1"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="联网测试1" />
+
+                        <Button
+                            android:id="@+id/btn_open_album_2"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:gravity="center_horizontal"
+                            android:onClick="onClick"
+                            android:paddingRight="100dp"
+                            android:text="联网测试2" />
+
+                        <Button
+                            android:id="@+id/btn_open_album_3"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="联网测试3" />
+
+                        <Button
+                            android:id="@+id/btn_recycle_test"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="onClick"
+                            android:text="recycleTest" />
+
+                        <Button
+                            android:id="@+id/btn_green_dao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="onClick"
+                            android:text="greenDao" />
+
+                        <Button
+                            android:id="@+id/btn_fine_report"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="fineReport" />
+
+                        <Button
+                            android:id="@+id/btn_gson_test"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="onClick"
+                            android:text="gsonTest" />
+
+                        <Button
+                            android:id="@+id/btn_go_test"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="gsonTest" />
+
+                        <Button
+                            android:id="@+id/btn_go_custom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="onClick"
+                            android:text="customView" />
+
+                        <Button
+                            android:id="@+id/btn_go_zip"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="下载解压测试" />
+
+                        <Button
+                            android:id="@+id/btn_get_top_activity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="onClick"
+                            android:text="getTopActivityTest" />
+
+                        <Button
+                            android:id="@+id/btn_thread_test"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="onClick"
+                            android:text="ThreadTest" />
+
+                        <Button
+                            android:id="@+id/btn_rx_test"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="onClick"
+                            android:text="RxAndroidTest" />
+
+                        <Button
+                            android:id="@+id/btn_thread_pool"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="ThreadPoolTest" />
 
 
-</ScrollView>
+                        <Button
+                            android:id="@+id/btn_sound"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="BTNSound" />
+
+                        <Button
+                            android:id="@+id/btn_upload_qiniu"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="BTNUploadQiniu" />
+
+                        <Button
+                            android:id="@+id/btn_file_md5"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="FILE_MD5_TEST" />
+
+
+                        <Button
+                            android:id="@+id/btn_handler_test"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="HANDLER_TEST" />
+
+
+                        <Button
+                            android:id="@+id/btn_data_binding"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="DATA-BINDING" />
+
+                        <Button
+                            android:id="@+id/btn_data_gif"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="GIF_TEST" />
+
+                        <Button
+                            android:id="@+id/btn_zxing_test"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="ZXING" />
+
+                        <Button
+                            android:id="@+id/btn_anim_test"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="100dp"
+                            android:onClick="onClick"
+                            android:text="ANIM_TEST" />
+                    </LinearLayout>
+
+
+                    <maintel.commontest.customView.MyTitleView
+                        android:id="@+id/ll_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="233dp">
+
+                        <ImageView
+                            android:id="@+id/iv_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/image_main_menu_head_bg2"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:text="awdawdawdawdawdfawfawfawfawfasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" />
+
+                        <TextView
+                            android:id="@+id/tv_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="73dp"
+                            android:onClick="onClick" />
+
+                        <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="167dp"-->
+                        <!--android:background="@drawable/image_main_menu_head_bg" />-->
+                        <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="?attr/actionBarSize"-->
+                        <!--android:background="@drawable/image_main_menu_head_bg1" />-->
+                    </maintel.commontest.customView.MyTitleView>
+
+
+                    <FrameLayout
+                        android:id="@+id/myView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+        </RelativeLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+</RelativeLayout>
