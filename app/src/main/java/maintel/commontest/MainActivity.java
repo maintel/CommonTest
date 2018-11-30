@@ -138,6 +138,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                }
 //            }
 //        }).start();
+
+
+
+        for(int i = 0;i < 500;i++){
+            new Thread(){
+                @Override
+                public void run() {
+                    try {
+                        sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
+        }
     }
 
     @Override

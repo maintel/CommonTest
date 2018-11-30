@@ -1,8 +1,10 @@
 package maintel.commontest.webview;
 
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 
 import butterknife.Bind;
 import maintel.commontest.R;
@@ -16,7 +18,7 @@ import maintel.commontest.base.Content;
  * 备注：
  */
 @Content(R.layout.activity_fine_report)
-public class FineReportTestActivity extends BaseActivity {
+public class FineReportTestActivity extends BaseActivity implements View.OnClickListener {
 
     @Bind(R.id.web_fine)
     WebView web_fine;
@@ -36,5 +38,16 @@ public class FineReportTestActivity extends BaseActivity {
                 return true;
             }
         });
+
+        findViewById(R.id.btn_show_alert).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_show_alert:
+
+                break;
+        }
     }
 }
