@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ import android.widget.TextView;
 
 import com.a17zuoye.zxing.CaptureActivity;
 import com.example.loglibrary.MyLogLibrary;
+import com.google.gson.Gson;
 import com.parallaxscrolling.ParallaxMainActivity;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
@@ -38,6 +40,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import maintel.commontest.ZipExtractor.ZipExtractorActivity;
 import maintel.commontest.anim.AnimTestActivity;
@@ -140,9 +143,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        }).start();
 
 
-
-        for(int i = 0;i < 500;i++){
-            new Thread(){
+        for (int i = 0; i < 500; i++) {
+            new Thread() {
                 @Override
                 public void run() {
                     try {
@@ -237,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Call<BaseSequenceBean<User>> call = NetworkUtils.getNetworkService().getUserList();
                 try {
                     List<User> list = call.execute().body().getData(); //不能在主线程中执行啊
-                    for (User user:
+                    for (User user :
                             list) {
                         if (BuildConfig.DEBUG) Log.d("MainActivity", user.toString());
                     }
@@ -331,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             public void onSuc(List<LockBean> resBody) {
                                 if (BuildConfig.DEBUG) Log.e("MainActivity", "onSuc");
                                 if (BuildConfig.DEBUG) Log.d("MainActivity", "resBody:" + resBody);
-                                for (LockBean bean:
+                                for (LockBean bean :
                                         resBody) {
                                     if (BuildConfig.DEBUG) Log.e("MainActivity", bean.toString());
                                 }
@@ -458,6 +460,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_anim_test:
                 myIntent.setClass(this, AnimTestActivity.class);
+
+
+                String str = "{\"string\":\"zhangsan\",\"int\":1,\"boolean\":true,\"3\":\"maliu\"}";
+
+                Map maps = (Map) new Gson().fromJson(str, Map.class);
+
+                for (Object obj : maps.keySet()) {
+                    System.out.println("key为：" + obj + "值为：" + maps.get(obj));
+                    System.out.println(maps.get(obj).getClass().getName());
+                    switch (maps.get(obj).getClass().getName()) {
+                        case "java.lang.Boolean":
+                            myIntent.putExtra((String) obj, (Boolean) maps.get(obj));
+                            break;
+                    }
+                    myIntent.putExtra((String) obj, maps);
+
+                }
+
+
                 startActivity(myIntent);
                 break;
             case R.id.btn_zxing_test:
