@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="wrap_content"
+    android:layout_height="150dp"
+    android:background="@color/color_7">
+
+
+    <LinearLayout
+        android:id="@+id/cardList"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/lineLeft"
+        android:layout_width="20dp"
+        android:layout_height="1dp"
+        android:layout_alignLeft="@id/cardList"
+        android:layout_marginTop="25dp"
+        android:background="@color/colorPrimary"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/lineRight"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignRight="@id/cardList"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@id/lineLeft"
+        android:background="@color/colorPrimary" />
+
+
+    <ImageView
+        android:id="@+id/ivNode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/ic_launcher" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivNode"
+        android:text="放学后" />
+</RelativeLayout>

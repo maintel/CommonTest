@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'  //kapt3插件
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+
+        applicationId "com.maintel.customview"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+        kapt {
+            arguments {
+                arg("moduleName", project.getName())
+            }
+        }
+
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:$rootProject.ext.androidSupport"
+    testCompile 'junit:junit:4.12'
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.androidSupport"
+    //日历自定义控件中用来计算日期的库
+    compile 'joda-time:joda-time:2.9.9'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    compile 'com.contrarywind:Android-PickerView:4.1.4'
+
+
+    compile 'com.alibaba:arouter-api:1.4.0'
+    kapt 'com.alibaba:arouter-compiler:1.2.1'
+}
+

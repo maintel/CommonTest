@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.maintel.customview.listview.ParentStudyPlanView2 xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/parent_study_plan_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/parent_grow_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="练习报告"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/parent_main_hw_notify_title_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="3dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp" />
+
+        <TextView
+            android:id="@+id/parent_main_hw_notify_total_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/parent_main_hw_notify_title_more"
+            android:text="全部报告" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_study_plan_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/parent_study_plan_title"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@mipmap/img_study_plan_label">
+
+        <TextView
+            android:id="@+id/tv_study_plan_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="15dp"
+            android:text="早上好～打开点读机播放同步课文，轻松磨耳朵早上好～打开点读机播放同步课文，轻松磨耳朵早上好～打开点读机播放同步课文，轻松磨耳朵早上好～打开点读机播放同步课文，轻松磨耳朵"
+            android:textColor="#ff4a4a4a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_study_plan_label"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="13dp"
+            android:text="当前有23335名小学生已完成《点读机》"
+            android:textColor="#9C9C9C"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+
+    <!--<com.maintel.customview.scrollView.MyHorizontalScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/mhs_scrollview"-->
+    <!--android:layout_below="@id/rl_study_plan_label"-->
+    <!--android:fillViewport="true">-->
+
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+    <com.maintel.customview.listview.MyLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_study_plan_label"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recy_study_plan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_study_plan_label"
+            android:layout_marginTop="20dp"
+            android:overScrollMode="never" />
+    </com.maintel.customview.listview.MyLinearLayout>
+
+
+    <!--</RelativeLayout>-->
+
+
+    <!--</com.maintel.customview.scrollView.MyHorizontalScrollView>-->
+
+</com.maintel.customview.listview.ParentStudyPlanView2>

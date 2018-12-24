@@ -10,7 +10,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        // 这样写
+//        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        // 也可以这样写
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+
         binding.student = Student("老王", 30)
     }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="text" format="string" />
+    <attr name="color" format="color" />
+    <attr name="size" format="dimension" />
+
+    <declare-styleable name="CustomText">
+        <attr name="text" />
+        <attr name="color" />
+        <attr name="size" />
+    </declare-styleable>
+
+    <declare-styleable name="FanChart">
+        <attr name="isShowInnerText" format="boolean" />
+        <attr name="innerCircleRadius" format="float" />
+        <attr name="innerTextColor" format="color" />
+        <attr name="innerCircleColor" format="color" />
+        <attr name="radius" format="dimension" />
+        <attr name="innerText" format="string" />
+        <attr name="minAngle" format="integer" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="innerTextSize" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="TestView">
+        <attr name="texts" format="string"/>
+    </declare-styleable>
+</resources>

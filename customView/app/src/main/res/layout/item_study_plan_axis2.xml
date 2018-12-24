@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/ll_mission_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignRight="@id/ll_mission_card"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:background="#ff7459" />
+
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:text="放学后"
+        android:textColor="#ff4a4a4a"
+        android:textSize="14sp" />
+
+</RelativeLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.maintel.customview.textview.MyTextView
+        android:id="@+id/tv_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="15dp"
+        android:text="12345678901234567890"
+        android:textSize="40sp"
+        android:visibility="gone" />
+
+
+    <!--        // 不明白为什么在 kotlin 中运行后点击总有一个和colorAccent一样的背景色
+        // 给 textview 设定特定的主题——把主题颜色设置为文字的背景色解决这个问题。-->
+
+    <com.maintel.customview.textview.MyTextViewJ
+        android:id="@+id/tv_test2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_test"
+        android:background="#ffffff"
+        android:padding="15dp"
+        android:textColor="#9999dd"
+        android:textSize="40sp"
+        android:theme="@style/myTextTheme" />
+
+
+    <com.maintel.customview.textview.MyTextViewJ
+        android:id="@+id/tv_test_long"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_test2"
+        android:layout_centerInParent="true"
+        android:background="#ffffff"
+        android:padding="15dp"
+        android:text="12345678901234567890点我看看a387fah98点我试试8924fa873fhakfh979734这是一个测试文本"
+        android:textColor="#9999dd"
+        android:textSize="40sp"
+        android:theme="@style/myTextTheme" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="这是什么..."
+        android:textSize="30sp"
+        android:background="#3A44FC"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:ellipsize="end"
+        android:maxEms="5"
+        android:maxLines="1"
+        android:background="#FFC107"
+
+        android:text="这是什么鬼"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:background="#00BCD4"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="这是什么鬼"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+</RelativeLayout>

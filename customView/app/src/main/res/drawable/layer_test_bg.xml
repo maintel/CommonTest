@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!--<item-->
+    <!--android:drawable="@drawable/ic_launcher"-->
+    <!--android:gravity="center">-->
+
+    <!--</item>-->
+    <!--<item-->
+    <!--android:top="10dp"-->
+    <!--android:left="10dp"-->
+    <!--android:drawable="@drawable/ic_launcher"-->
+    <!--android:gravity="center">-->
+
+    <!--</item>-->
+    <!--<item-->
+    <!--android:top="20dp"-->
+    <!--android:left="20dp"-->
+    <!--android:drawable="@drawable/ic_launcher"-->
+    <!--android:gravity="center">-->
+
+    <!--</item>-->
+
+
+    <item
+
+        android:gravity="center">
+        <shape android:shape="rectangle">
+            <size
+                android:width="100dp"
+                android:height="100dp" />
+            <corners android:radius="5dp" />
+            <solid android:color="@color/color_7" />
+        </shape>
+
+    </item>
+
+    <item android:top="100dp">
+
+        <bitmap
+            android:gravity="right|bottom"
+            android:src="@drawable/ic_launcher" />
+
+
+    </item>
+</layer-list>
