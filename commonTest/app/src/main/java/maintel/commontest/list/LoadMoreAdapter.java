@@ -1,12 +1,12 @@
 package maintel.commontest.list;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import maintel.commontest.R;
 
 /**

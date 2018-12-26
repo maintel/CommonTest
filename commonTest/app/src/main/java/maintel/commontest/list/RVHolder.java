@@ -1,7 +1,8 @@
 package maintel.commontest.list;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * 说明：自定义的viewHolder

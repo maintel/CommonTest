@@ -1,6 +1,5 @@
 package com.parallaxscrolling.fragmentBuilder;
 
-import android.support.v4.app.Fragment;
 
 /**
  * 建造者模式 构建类

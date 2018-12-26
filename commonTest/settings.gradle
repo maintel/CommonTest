@@ -1,1 +1,1 @@
-include ':app', ':loglibrary', ':baselibrary',':zxing', ':parallaxscrolling', ':mvvm', ':kotlin'
+include ':app', ':loglibrary', ':baselibrary',':zxing', ':parallaxscrolling', ':statusbar'

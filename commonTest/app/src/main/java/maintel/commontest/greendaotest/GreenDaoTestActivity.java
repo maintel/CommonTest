@@ -1,7 +1,6 @@
 package maintel.commontest.greendaotest;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.View;
 import android.widget.Toast;
 
@@ -13,6 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.Bind;
 import maintel.commontest.R;
 import maintel.commontest.base.BaseActivity;

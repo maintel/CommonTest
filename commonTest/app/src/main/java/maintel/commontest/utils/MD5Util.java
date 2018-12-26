@@ -7,7 +7,6 @@ package maintel.commontest.utils;
  * 备注：
  */
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.io.File;
@@ -19,6 +18,8 @@ import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+
+import androidx.annotation.NonNull;
 
 /**
  * Md5校验工具类

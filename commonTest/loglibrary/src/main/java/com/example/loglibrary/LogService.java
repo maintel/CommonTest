@@ -11,7 +11,6 @@ import android.os.IBinder;
 
 import android.os.Message;
 import android.provider.Settings;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -30,6 +29,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+
+import androidx.annotation.Nullable;
 
 /**
  * 监听 log 的 service

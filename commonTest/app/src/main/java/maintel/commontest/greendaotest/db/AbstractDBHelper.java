@@ -3,8 +3,7 @@ package maintel.commontest.greendaotest.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.Property;
@@ -16,6 +15,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import cn.finalteam.toolsfinal.StringUtils;
 import maintel.commontest.entity.DaoMaster;
 import maintel.commontest.entity.DaoSession;

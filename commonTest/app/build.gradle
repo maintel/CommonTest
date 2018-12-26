@@ -45,7 +45,7 @@ greendao{
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:$rootProject.ext.android_support"
+    compile "androidx.appcompat:appcompat:$rootProject.ext.android_support"
     compile 'me.iwf.photopicker:PhotoPicker:0.9.5'
     compile 'cn.finalteam:galleryfinal:1.4.8.7'
     compile 'com.squareup.retrofit2:converter-scalars:2.0.0' //字符串 转换器
@@ -68,6 +68,7 @@ dependencies {
     compile project(':loglibrary')
     compile project(':zxing')
     compile project(':parallaxscrolling')
+    compile project(':statusbar')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'

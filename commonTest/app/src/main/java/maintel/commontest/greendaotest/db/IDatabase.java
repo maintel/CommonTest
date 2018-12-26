@@ -1,12 +1,13 @@
 package maintel.commontest.greendaotest.db;
 
-import android.support.annotation.NonNull;
 
 import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.List;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
 
 /**
  * 说明：Database接口

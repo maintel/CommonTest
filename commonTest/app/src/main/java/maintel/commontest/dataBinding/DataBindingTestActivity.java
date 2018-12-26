@@ -1,6 +1,6 @@
 package maintel.commontest.dataBinding;
 
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.view.View;
 
 import maintel.commontest.R;

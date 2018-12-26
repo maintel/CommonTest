@@ -1,11 +1,13 @@
 package com.parallaxscrolling.transfrom;
 
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
+
 import android.view.View;
 
 import com.parallaxscrolling.R;
 import com.parallaxscrolling.fragmentBuilder.PageFragment;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * @author jieyu.chen

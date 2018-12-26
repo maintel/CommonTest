@@ -1,12 +1,14 @@
 package maintel.commontest.thread;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
 import android.util.Log;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 说明：

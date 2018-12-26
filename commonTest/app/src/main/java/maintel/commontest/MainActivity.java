@@ -14,8 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.content.PermissionChecker;
-import android.support.v7.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +30,7 @@ import android.widget.TextView;
 import com.a17zuoye.zxing.CaptureActivity;
 import com.example.loglibrary.MyLogLibrary;
 import com.google.gson.Gson;
+import com.maintel.statusbar.StatusBarActivity;
 import com.parallaxscrolling.ParallaxMainActivity;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
@@ -42,6 +42,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
 import maintel.commontest.ZipExtractor.ZipExtractorActivity;
 import maintel.commontest.anim.AnimTestActivity;
 import maintel.commontest.bean.BaseObjBean;
@@ -462,29 +463,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 myIntent.setClass(this, AnimTestActivity.class);
 
 
-                String str = "{\"string\":\"zhangsan\",\"int\":1,\"boolean\":true,\"3\":\"maliu\"}";
-
-                Map maps = (Map) new Gson().fromJson(str, Map.class);
-
-                for (Object obj : maps.keySet()) {
-                    System.out.println("key为：" + obj + "值为：" + maps.get(obj));
-                    System.out.println(maps.get(obj).getClass().getName());
-                    switch (maps.get(obj).getClass().getName()) {
-                        case "java.lang.Boolean":
-                            myIntent.putExtra((String) obj, (Boolean) maps.get(obj));
-                            break;
-                    }
-                    myIntent.putExtra((String) obj, maps);
-
-                }
-
-
                 startActivity(myIntent);
                 break;
             case R.id.btn_zxing_test:
 //                myIntent.setClass(this, CaptureActivity.class);
 //                startActivity(myIntent);
                 mHandler.removeMessages(1112);
+                break;
+
+            case R.id.btn_status_bar:
+                myIntent.setClass(this, StatusBarActivity.class);
+
+
+                startActivity(myIntent);
                 break;
         }
     }
