@@ -38,6 +38,7 @@
         <activity
             android:name=".listview.ListViewTestActivity"
             android:label="ListView Test" />
+        <activity android:name=".ringProgress.RingProgressActivity" />
     </application>
 
 </manifest>

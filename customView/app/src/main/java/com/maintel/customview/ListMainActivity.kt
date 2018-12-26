@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.main_activity.*
 @Route(path = "/main/main")
 class ListMainActivity : ListActivity() {
 
-    private val items = listOf("Other Main", "Other Kotlin", "Text View", "Text View List", "List View Test")
+    private val items = listOf("Other Main", "Other Kotlin", "Text View", "Text View List", "List View Test", "Ring Progress Activity")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,18 +32,16 @@ class ListMainActivity : ListActivity() {
     override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long) {
         when (position) {
             0 -> {
-//                startActivity(Intent(this, MainActivity::class.java))
-                ARouter.getInstance().build("/test/mainActivity").navigation(this)
+                navigationActivity("/test/mainActivity")
             }
             1 -> {
-                startActivity(Intent(this, TestActivity::class.java))
+                navigationActivity("/test/testActivity")
             }
             2 -> {
-//                startActivity(Intent(this, TextViewActivity::class.java))
-                ARouter.getInstance().build("/text/textViewActivity").navigation(this)
+                navigationActivity("/test/ringProgress")
             }
             3 -> {
-                startActivity(Intent(this, com.maintel.customview.textview.ListActivity::class.java))
+                navigationActivity("/test/textListActivity")
             }
             4 -> {
                 val intent = Intent(Intent(this, ListViewTestActivity::class.java))
@@ -51,6 +49,15 @@ class ListMainActivity : ListActivity() {
                 intent.putExtra("111", "1")
                 startActivity(intent)
             }
+            5 -> {
+                navigationActivity("/test/ringProgress")
+            }
         }
+    }
+
+
+    private fun navigationActivity(path: String) {
+        ARouter.getInstance().build(path).navigation(this)
+
     }
 }

@@ -28,7 +28,6 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.maintel.customview.textview.MyClickableSpan;
 import com.maintel.customview.textview.MyTextViewJ;
 import com.maintel.customview.utils.LogUtils;
-import com.maintel.customview.view.CountdownProgressButton;
 
 import java.util.Date;
 
@@ -99,78 +98,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final CountdownProgressButton countdownProgressButton = (CountdownProgressButton) findViewById(R.id.btn_cpb);
-        countdownProgressButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                if (countdownProgressButton.isRecording()) {
-//                    countdownProgressButton.stop();
-//                } else {
-//                    countdownProgressButton.start();
-//
-//                }
-
-                TimePickerView pvTime = new TimePickerBuilder(MainActivity.this, new OnTimeSelectListener() {
-                    @Override
-                    public void onTimeSelect(Date date, View v) {
-                        Toast.makeText(MainActivity.this, date.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                }).build();
-                pvTime.show();
-            }
-        });
 
         findViewById(R.id.ll_hor_sliding_hide_menu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startAnim(view);
-//                countdownProgressButton.setVisibility(countdownProgressButton.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
-//                Rect localRect = new Rect();
-//                System.out.println(countdownProgressButton.getLocalVisibleRect(localRect));
-//                Rect globalRect = new Rect();
 //
-//                System.out.println(countdownProgressButton.getGlobalVisibleRect(globalRect));
-//                Rect myGlobalRect = new Rect();
-//                AccessibilityNodeInfo info = AccessibilityNodeInfo.obtain();
-//                countdownProgressButton.onInitializeAccessibilityNodeInfo(info);
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//                    System.out.println("isVisibleToUser::" + info.isVisibleToUser());
-//                    Rect boundsInScreen = new Rect();
-//                    info.getBoundsInScreen(boundsInScreen);
-//                    Rect getBoundsInParent = new Rect();
-//                    info.getBoundsInParent(getBoundsInParent);
-//                    System.out.println("getBoundsInParent::" + getBoundsInParent);
-//                    System.out.println("getBoundsInScreen::" + boundsInScreen);
-//                }
-//                System.out.println(countdownProgressButton.getWindowVisibility());
-//
-//                ViewParent viewpar = countdownProgressButton.getParent();
-//                while (viewpar != null) {
-//                    if (viewpar instanceof ViewGroup) {
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-//                            System.out.println("getClipChildren" + ((ViewGroup) viewpar).getClipChildren());
-//                            System.out.println((viewpar));
-//                        }
-//                    }
-//                    viewpar = viewpar.getParent();
-//                }
-//
-//                System.out.println(countdownProgressButton.getGlobalVisibleRect(myGlobalRect, new Point()));
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//                    System.out.println(countdownProgressButton.isAttachedToWindow());
-//                }
-//                System.out.println("global" + globalRect);
-//                System.out.println("local" + localRect);
-//                System.out.println("myGlobalRect" + myGlobalRect);
-//
-//                System.out.println("left" + countdownProgressButton.getLeft());
-//                System.out.println("top" + countdownProgressButton.getTop());
-//                System.out.println("right" + countdownProgressButton.getRight());
-//                System.out.println("bottom" + countdownProgressButton.getBottom());
-//                System.out.println("scrollX" + countdownProgressButton.getScrollX());
-//                System.out.println("scrollY" + countdownProgressButton.getScrollY());
-
-//                System.out.println(ViewUtils.isViewCovered(countdownProgressButton));
 
             }
         });

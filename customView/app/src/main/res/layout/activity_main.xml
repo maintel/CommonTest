@@ -62,15 +62,6 @@
             android:layout_marginTop="300dp"
             android:background="@mipmap/ic_launcher" />
 
-
-        <com.maintel.customview.view.CountdownProgressButton
-            android:id="@+id/btn_cpb"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:visibility="visible" />
-
         <TextView
             android:layout_width="200dp"
             android:layout_height="200dp"
@@ -84,9 +75,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="200dp"
             android:layout_marginRight="-95dp"
             android:layout_marginBottom="50dp"
-            android:layout_marginTop="200dp"
             android:background="@color/color_7"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -151,8 +142,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="tab layout test" />
-
-
 
 
         <com.maintel.customview.textview.MyTextViewJ

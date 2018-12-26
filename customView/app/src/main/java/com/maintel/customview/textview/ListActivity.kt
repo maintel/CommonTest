@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.maintel.customview.R
 
 /**
@@ -15,6 +16,7 @@ import com.maintel.customview.R
  * @author jieyu.chen
  * @date 2018/9/13
  */
+@Route(path = "/test/textListActivity")
 class ListActivity : ListActivity() {
 
     private val items = listOf("Other MainOther MainOther MainOther MainOther MainOther MainOther MainOther MainOther Main",

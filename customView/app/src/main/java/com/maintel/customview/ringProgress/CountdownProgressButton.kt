@@ -1,4 +1,4 @@
-package com.maintel.customview.view
+package com.maintel.customview.ringProgress
 
 import android.animation.Animator
 import android.animation.ValueAnimator

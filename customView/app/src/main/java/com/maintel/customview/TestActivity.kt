@@ -8,6 +8,7 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.animation.AnimationSet
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.maintel.customview.anim.PointEvaluator
 import com.maintel.customview.tabTest.TabLayoutTestActivity
 import com.maintel.customview.view.MoveImageView
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  * @author jieyu.chen
  * @date 2018/8/2
  */
+@Route(path = "/test/testActivity")
 class TestActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +44,6 @@ class TestActivity : AppCompatActivity() {
 
 
     }
-
 
 
     private fun test(poi: Int) {

@@ -25,6 +25,24 @@
 
 
     <declare-styleable name="TestView">
-        <attr name="texts" format="string"/>
+        <attr name="texts" format="string" />
+    </declare-styleable>
+
+    <!--
+
+        private var bgColor = Color.YELLOW // 默认背景透明
+    private var bgPaintColor = Color.parseColor("#f2f2f2") // 默认进度条背景色
+    private var proPaintColor = Color.parseColor("#2c99ff") // 默认进度条颜色
+    private var paintWidth = 10f // 默认画笔宽度
+    private var startAngle = 180f // 开始位置
+    private var sweepAngle = 180f // 圆弧弧度
+    -->
+    <declare-styleable name="RingProgressView">
+        <attr name="paintWidth" format="dimension|reference" />
+        <attr name="startAngle" format="dimension|reference" />
+        <attr name="sweepAngle" format="dimension|reference" />
+        <attr name="bgColor" format="color|reference" />
+        <attr name="bgPaintColor" format="color|reference" />
+        <attr name="proPaintColor" format="color|reference" />
     </declare-styleable>
 </resources>
