@@ -466,9 +466,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(myIntent);
                 break;
             case R.id.btn_zxing_test:
-//                myIntent.setClass(this, CaptureActivity.class);
-//                startActivity(myIntent);
-                mHandler.removeMessages(1112);
+                myIntent.setClass(this, CaptureActivity.class);
+                startActivity(myIntent);
+//                mHandler.removeMessages(1112);
                 break;
 
             case R.id.btn_status_bar:

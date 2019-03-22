@@ -29,6 +29,7 @@ import android.os.Message;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
@@ -259,16 +260,23 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
     /**
      * A valid barcode has been found, so give an indication of success and show the results.
+     * <p>
+     * 解码成功
      *
      * @param rawResult   The contents of the barcode.
      * @param scaleFactor amount by which thumbnail was scaled
      * @param barcode     A greyscale bitmap of the camera data which was decoded.
      */
     public void handleDecode(Result rawResult, Bitmap barcode, float scaleFactor) {
-        Intent intent = new Intent();
-        intent.putExtra(SCAN_RESULT, rawResult.getText());
-        setResult(SCAN_RESULT_CODE, intent);
-        finish();
+        try {
+            Toast.makeText(this, rawResult.getText(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent();
+            intent.putExtra(SCAN_RESULT, rawResult.getText());
+            setResult(SCAN_RESULT_CODE, intent);
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean isCameraComplete = false;
