@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ClipDrawable;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,6 +19,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -45,6 +47,7 @@ import java.util.Map;
 import androidx.appcompat.app.AppCompatActivity;
 import maintel.commontest.ZipExtractor.ZipExtractorActivity;
 import maintel.commontest.anim.AnimTestActivity;
+import maintel.commontest.base.MyApplication;
 import maintel.commontest.bean.BaseObjBean;
 import maintel.commontest.bean.BaseSequenceBean;
 import maintel.commontest.bean.CommonBean;
@@ -82,12 +85,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            Window window = getWindow();
+//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+//        }
+
+
+//        Uri uri = Uri.parse("beehive:\\/\\/platform.17zuoye.client\\/main?tab=1");
+//        System.out.println("beehive::" + uri.getPath());
+//        System.out.println("beehive::" + uri.getQueryParameter("tab"));
+
+
+        try {
+            String rawData = "{\"notifyId\":\"1554260781095-5ca4232d77748767a76634a5\"," +
+                    "\"sound\":\"default\",\"tag\":\"通知\",\"timestamp\":1554260781095," +
+                    "\"url\":\"beehive://platform.17zuoye.client/main?tab=1\"}";
+            JSONObject jsonObject = new JSONObject(rawData);
+            String url = jsonObject.optString("url");
+            System.out.println(url);
+            JSONObject jsonObject2 = new JSONObject("{\"url\": \"" + url + "\"}");
+            String url2 = jsonObject2.optString("url");
+            System.out.println(url2);
+
+
+            Uri uri = Uri.parse(url);
+            System.out.println("uri------->" + uri);
+            System.out.println("beehive::" + uri.getQueryParameter("tab"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         //透明状态栏
@@ -164,6 +192,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         System.out.println("MainActivity.onAttachedToWindow" + System.currentTimeMillis());
 
 
+        findViewById(R.id.btn_status_bar).post(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Adadadad");
+                System.out.println(findViewById(R.id.btn_status_bar).getHeight());
+
+            }
+        });
+
+        ViewGroup.LayoutParams params = findViewById(R.id.btn_status_bar).getLayoutParams();
+        System.out.println(params.height);
+
     }
 
     @Override
@@ -184,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_trans:
                 myIntent.setClass(this, ParallaxMainActivity.class);
-                startActivity(myIntent);
+                MyApplication.getInterface().startActivity(myIntent);
                 break;
             case R.id.btn_memory_opt:
                 myIntent.setClass(this, RuanYNTestActivity.class);

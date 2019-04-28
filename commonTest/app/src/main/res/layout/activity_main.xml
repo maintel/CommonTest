@@ -39,7 +39,7 @@
                         <Button
                             android:id="@+id/btn_status_bar"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="60dp"
                             android:onClick="onClick"
                             android:text="状态栏测试" />
 
