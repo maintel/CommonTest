@@ -1,1 +1,1 @@
-include ':app', ':loglibrary', ':baselibrary',':zxing', ':parallaxscrolling', ':statusbar'
+include ':app', ':loglibrary', ':baselibrary',':zxing', ':parallaxscrolling', ':statusbar', ':expandablemenu'

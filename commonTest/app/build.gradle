@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "maintel.commontest"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -69,6 +69,7 @@ dependencies {
     compile project(':zxing')
     compile project(':parallaxscrolling')
     compile project(':statusbar')
+    compile project(':expandablemenu')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'

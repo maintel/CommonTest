@@ -32,6 +32,7 @@ import android.widget.TextView;
 import com.a17zuoye.zxing.CaptureActivity;
 import com.example.loglibrary.MyLogLibrary;
 import com.google.gson.Gson;
+import com.maintel.expandablemenu.simple.SimpleActivity;
 import com.maintel.statusbar.StatusBarActivity;
 import com.parallaxscrolling.ParallaxMainActivity;
 import com.qiniu.android.http.ResponseInfo;
@@ -45,6 +46,7 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import maintel.commontest.ZipExtractor.ZipExtractorActivity;
 import maintel.commontest.anim.AnimTestActivity;
 import maintel.commontest.base.MyApplication;
@@ -705,5 +707,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mPopuWindow.setOutsideTouchable(true);
         mPopuWindow.setBackgroundDrawable(new BitmapDrawable());
         mPopuWindow.showAsDropDown(ll_title, 0, 0);
+    }
+
+
+    public void expandableMenu(View view) {
+
+        startActivity(new Intent(this, SimpleActivity.class));
     }
 }

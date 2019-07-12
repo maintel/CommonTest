@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:expandable_selector="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false">
+
+    <Button
+        android:id="@+id/bt_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.maintel.expandablemenu.simple.ExpandableSelector
+            android:id="@+id/es_sizes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="@dimen/expandable_selector_margin"
+            android:background="@drawable/bg_expandable_selector_dark"
+            android:clipChildren="false"
+            expandable_selector:expand_direction="right">
+
+
+        </com.maintel.expandablemenu.simple.ExpandableSelector>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11111" />
+
+    </LinearLayout>
+
+    <com.maintel.expandablemenu.simple.ExpandableSelector
+        android:id="@+id/es_sizes_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/expandable_selector_margin"
+        android:background="@drawable/bg_expandable_selector_dark"
+        android:clipChildren="false"
+        expandable_selector:expand_direction="bottom" />
+    <!-- SIZES EXPANDABLE SELECTOR -->
+
+
+    <!-- ICONS EXPANDABLE SELECTOR -->
+
+    <com.maintel.expandablemenu.simple.ExpandableSelector
+        android:id="@+id/es_sizes_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/expandable_selector_margin"
+        android:background="@drawable/bg_expandable_selector_dark"
+        android:clipChildren="false"
+        expandable_selector:expand_direction="left" />
+
+    <com.maintel.expandablemenu.simple.ExpandableSelector
+        android:id="@+id/es_sizes_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/expandable_selector_margin"
+        android:background="@drawable/bg_expandable_selector_dark"
+        android:clipChildren="false"
+        expandable_selector:expand_direction="top" />
+
+    <com.maintel.expandablemenu.simple.ExpandableSelector
+        android:id="@+id/es_icons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/expandable_selector_margin"
+        android:background="@drawable/bg_expandable_selector_dark"
+        expandable_selector:animation_duration="@integer/slow_custom_animation_duration"
+        expandable_selector:collapse_interpolator="@android:anim/decelerate_interpolator"
+        expandable_selector:container_interpolator="@android:anim/accelerate_decelerate_interpolator"
+        expandable_selector:expand_interpolator="@android:anim/accelerate_interpolator" />
+
+    <!-- COLORS EXPANDABLE SELECTOR -->
+
+    <com.maintel.expandablemenu.simple.ExpandableSelector
+        android:id="@+id/es_colors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/expandable_selector_margin"
+        android:background="@drawable/bg_expandable_selector"
+        expandable_selector:hide_background_if_collapsed="true"
+        expandable_selector:hide_first_item_on_collapse="true">
+
+        <Button
+            android:id="@+id/bt_colors"
+            style="@style/ExpandableItemStyleHeader"
+            android:text="@string/colors_expandable_selector_title" />
+
+    </com.maintel.expandablemenu.simple.ExpandableSelector>
+
+</RelativeLayout>
