@@ -6,6 +6,7 @@ import com.facebook.stetho.Stetho;
 
 import org.greenrobot.greendao.database.Database;
 
+import androidx.multidex.MultiDexApplication;
 import maintel.commontest.entity.DaoMaster;
 import maintel.commontest.entity.DaoSession;
 import maintel.commontest.greendaotest.db.AbstractDBHelper;
@@ -17,7 +18,7 @@ import maintel.commontest.greendaotest.db.MyUpOpenHelper;
  * 时间：2016/11/3 15:42
  * 备注：
  */
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
 
     public static final boolean ENCRYPTED = false;
     private DaoSession daoSession;

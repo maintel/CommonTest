@@ -5,8 +5,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +16,7 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Cancellable;
 import maintel.commontest.R;
 
 /**
@@ -35,7 +34,7 @@ public class RxAndroidActivity extends AppCompatActivity {
     @Bind(R.id.btn_rx_just)
     Button btnRxJust;
 
-    private Subscriber<String> subscriber;
+    private ObservableEmitter<String> subscriber;
     private Observable<String> observable;
 
     @Override
@@ -47,11 +46,27 @@ public class RxAndroidActivity extends AppCompatActivity {
     }
 
     private void createSubscriber() {
-        subscriber = new Subscriber<String>() {
+        subscriber = new ObservableEmitter<String>() {
             @Override
-            public void onSubscribe(Subscription s) {
-                Log.e("RxAndroidActivity", "onSubscribe");
+            public void setDisposable(Disposable d) {
+
             }
+
+            @Override
+            public void setCancellable(Cancellable c) {
+
+            }
+
+            @Override
+            public boolean isDisposed() {
+                return false;
+            }
+
+            @Override
+            public ObservableEmitter<String> serialize() {
+                return null;
+            }
+
 
             @Override
             public void onNext(String s) {

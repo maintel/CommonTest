@@ -10,8 +10,7 @@
         android:id="@+id/bt_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        />
+        android:layout_centerInParent="true" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -82,7 +81,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/expandable_selector_margin"
         android:background="@drawable/bg_expandable_selector_dark"
-        expandable_selector:animation_duration="@integer/slow_custom_animation_duration"
+        expandable_selector:animation_duration="200"
         expandable_selector:collapse_interpolator="@android:anim/decelerate_interpolator"
         expandable_selector:container_interpolator="@android:anim/accelerate_decelerate_interpolator"
         expandable_selector:expand_interpolator="@android:anim/accelerate_interpolator" />
@@ -94,17 +93,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/expandable_selector_margin"
         android:background="@drawable/bg_expandable_selector"
+        android:visibility="gone"
         expandable_selector:hide_background_if_collapsed="true"
         expandable_selector:hide_first_item_on_collapse="true">
 
         <Button
             android:id="@+id/bt_colors"
-            style="@style/ExpandableItemStyleHeader"
-            android:text="@string/colors_expandable_selector_title" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="aaaaaaaaaaaaaa" />
 
     </com.maintel.expandablemenu.simple.ExpandableSelector>
 

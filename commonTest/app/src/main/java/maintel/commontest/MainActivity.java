@@ -62,6 +62,7 @@ import maintel.commontest.file.FileMd5TestActivity;
 import maintel.commontest.gifimage.GifImageViewTestActivity;
 import maintel.commontest.greendaotest.GreenDaoTestActivity;
 import maintel.commontest.handler.HandlerTestActivity;
+import maintel.commontest.layout.LayoutMainActivity;
 import maintel.commontest.net.MyCallBack;
 import maintel.commontest.net.NetworkCallBack;
 import maintel.commontest.net.NetworkUtils;
@@ -174,18 +175,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        }).start();
 
 
-        for (int i = 0; i < 500; i++) {
-            new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }.start();
-        }
+//        for (int i = 0; i < 500; i++) {
+//            new Thread() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        sleep(10000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }.start();
+//        }
     }
 
     @Override
@@ -227,6 +228,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_trans:
                 myIntent.setClass(this, ParallaxMainActivity.class);
                 MyApplication.getInterface().startActivity(myIntent);
+                break;
+            case R.id.btn_layout:
+                myIntent.setClass(this, LayoutMainActivity.class);
+                startActivity(myIntent);
                 break;
             case R.id.btn_memory_opt:
                 myIntent.setClass(this, RuanYNTestActivity.class);

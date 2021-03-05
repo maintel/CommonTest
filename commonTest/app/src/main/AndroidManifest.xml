@@ -59,6 +59,9 @@
         <activity android:name=".gifimage.GifImageViewTest2Activity" />
         <activity android:name=".scrollView.ScrollViewTestActivity" />
         <activity android:name=".anim.AnimTestActivity" />
+
+        <activity android:name=".layout.LayoutMainActivity" />
+        <activity android:name=".layout.ScrollTopTabActivity" />
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'  //kapt3插件
 apply plugin: 'org.greenrobot.greendao'
 
 android {
@@ -18,6 +20,7 @@ android {
                 includeCompileClasspath false
             }
         }
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -52,8 +55,8 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.2.0' //网络
     compile 'com.squareup.retrofit2:retrofit:2.0.0'  //网络
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'//ConverterFactory的Gson依赖包
-    compile 'org.greenrobot:greendao:3.2.0' //数据库orm框架 greenDao
-    compile 'com.facebook.stetho:stetho:1.0.1' //通过chrome抓包，查看数据库
+    compile 'org.greenrobot:greendao:3.3.0' //数据库orm框架 greenDao
+    compile 'com.facebook.stetho:stetho:1.5.1' //通过chrome抓包，查看数据库
     compile 'com.jakewharton:butterknife:7.0.1' //依赖注入框架
     compile group: 'org.mockito', name: 'mockito-all', version: '1.10.19' //单元测试
 
@@ -73,6 +76,8 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
 }
 repositories {
     mavenCentral()
